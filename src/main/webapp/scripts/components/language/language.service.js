@@ -27,7 +27,9 @@ angular.module('leaguegenApp')
  They are written in English to avoid character encoding issues (not a perfect solution)
  */
     .constant('LANGUAGES', [
-        'en', 'fr'
+        'en',
+        'ca',
+        'es'
         //JHipster will add new languages here
     ]
 );
