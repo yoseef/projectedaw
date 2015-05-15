@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "baseName": "leagueGen",
+    "packageName": "net.yosef",
+    "packageFolder": "net/yosef",
+    "authenticationType": "xauth",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "rememberMeKey": "ef227df4384ba7a479bfbdec2fb053715bbfaf95"
+  }
+}
