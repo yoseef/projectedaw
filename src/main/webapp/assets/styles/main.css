@@ -3,6 +3,9 @@
 .nav-pills > li > a {
     border-radius: 0px;
 }
+#strengthBar {
+    display: inline-block;
+}
 /* ========================================================================== */
 
 
