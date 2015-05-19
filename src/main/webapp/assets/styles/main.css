@@ -6,6 +6,9 @@
 #strengthBar {
     display: inline-block;
 }
+.modal-backdrop {
+    z-index: 0;
+}
 /* ========================================================================== */
 
 
