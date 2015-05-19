@@ -1,0 +1,46 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "grup",
+            "relationshipNameCapitalized": "Grup",
+            "relationshipFieldName": "grup",
+            "otherEntityName": "grup",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Grup"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "any",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Any",
+            "fieldNameUnderscored": "any",
+            "fieldInJavaBeanMethod": "Any",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "descripcio",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Descripcio",
+            "fieldNameUnderscored": "descripcio",
+            "fieldInJavaBeanMethod": "Descripcio",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519142442",
+    "pagination": "no",
+    "validation": true
+}

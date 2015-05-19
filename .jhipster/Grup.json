@@ -1,0 +1,58 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "temporada",
+            "relationshipNameCapitalized": "Temporada",
+            "relationshipFieldName": "temporada",
+            "otherEntityName": "temporada",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Temporada",
+            "otherEntityField": "any"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "equip",
+            "relationshipNameCapitalized": "Equip",
+            "relationshipFieldName": "equip",
+            "otherEntityName": "equip",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Equip"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "jornada",
+            "relationshipNameCapitalized": "Jornada",
+            "relationshipFieldName": "jornada",
+            "otherEntityName": "jornada",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Jornada"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Nom",
+            "fieldNameUnderscored": "nom",
+            "fieldInJavaBeanMethod": "Nom",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519142718",
+    "pagination": "no",
+    "validation": true
+}

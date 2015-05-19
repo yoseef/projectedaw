@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="leaguegenApp.franja.detail.title">Franja</span> {{franja.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.franja.dia">Dia</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{franja.dia}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.franja.hora_inici">Hora_inici</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{franja.hora_inici}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.franja.hora_fi">Hora_fi</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{franja.hora_fi}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="franja"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

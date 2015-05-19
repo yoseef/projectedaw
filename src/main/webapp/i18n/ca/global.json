@@ -6,6 +6,13 @@
             "home": "Inici",
             "entities": {
                 "main": "Entities",
+                "temporada": "Temporada",
+                "grup": "Grup",
+                "jornada": "Jornada",
+                "equip": "Equip",
+                "jugador": "Jugador",
+                "partit": "Partit",
+                "franja": "Franja",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

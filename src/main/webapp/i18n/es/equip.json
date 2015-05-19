@@ -1,0 +1,29 @@
+{
+    "leaguegenApp": {
+        "equip" : {
+            "home": {
+                "title": "Equips",
+                "createLabel": "Create a new Equip",
+                "createOrEditLabel": "Create or edit a Equip"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Equip {{ id }}?"
+            },
+            "detail": {
+                "title": "Equip"
+            },
+            "nom": "Nom",
+            "gols_favor": "Gols_favor",
+            "gols_contra": "Gols_contra",
+            "pj": "Pj",
+            "pg": "Pg",
+            "pe": "Pe",
+            "pp": "Pp",
+            "data_alta": "Data_alta",
+            "pagat": "Pagat",
+            "grup": "grup",
+            "partit": "partit",
+            "jugador": "jugador"
+        }
+    }
+}

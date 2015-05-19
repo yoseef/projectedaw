@@ -1,0 +1,209 @@
+<div>
+
+    <h2 translate="leaguegenApp.equip.home.title">Equip</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#saveEquipModal" ng-click="clear()">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="leaguegenApp.equip.home.createLabel">Create a new Equip</span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                    </div>
+                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Equip</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="saveEquipModal" tabindex="-1" role="dialog" aria-labelledby="myEquipLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myEquipLabel" translate="leaguegenApp.equip.home.createOrEditLabel">Create or edit a Equip</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="equip.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.nom">Nom</label>
+                            <input type="text" class="form-control" name="nom"
+                                   ng-model="equip.nom" required ng-minlength="3">
+
+                            <div ng-show="editForm.nom.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.nom.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.nom.$error.minlength" translate="entity.validation.minlength" translate-value-min="3">
+                                    This field is required to be at least 3 characters.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.gols_favor">Gols_favor</label>
+                            <input type="number" class="form-control" name="gols_favor"
+                                   ng-model="equip.gols_favor">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.gols_contra">Gols_contra</label>
+                            <input type="number" class="form-control" name="gols_contra"
+                                   ng-model="equip.gols_contra">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.pj">Pj</label>
+                            <input type="number" class="form-control" name="pj"
+                                   ng-model="equip.pj">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.pg">Pg</label>
+                            <input type="number" class="form-control" name="pg"
+                                   ng-model="equip.pg">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.pe">Pe</label>
+                            <input type="number" class="form-control" name="pe"
+                                   ng-model="equip.pe">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.pp">Pp</label>
+                            <input type="number" class="form-control" name="pp"
+                                   ng-model="equip.pp">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.data_alta">Data_alta</label>
+                            <input type="date" class="form-control" name="data_alta"
+                                   ng-model="equip.data_alta" required>
+
+                            <div ng-show="editForm.data_alta.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.data_alta.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.pagat">Pagat</label>
+                            <input type="checkbox" class="form-control" name="pagat"
+                                   ng-model="equip.pagat">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.grup">grup</label>
+                            <select class="form-control" name="grup" ng-model="equip.grup.id" ng-options="grup.id as grup.nom for grup in grups">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteEquipConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(equip.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="leaguegenApp.equip.delete.question" translate-values="{id: '{{equip.id}}'}">Are you sure you want to delete this Equip?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="leaguegenApp.equip.nom">Nom</th>
+                    <th translate="leaguegenApp.equip.gols_favor">Gols_favor</th>
+                    <th translate="leaguegenApp.equip.gols_contra">Gols_contra</th>
+                    <th translate="leaguegenApp.equip.pj">Pj</th>
+                    <th translate="leaguegenApp.equip.pg">Pg</th>
+                    <th translate="leaguegenApp.equip.pe">Pe</th>
+                    <th translate="leaguegenApp.equip.pp">Pp</th>
+                    <th translate="leaguegenApp.equip.data_alta">Data_alta</th>
+                    <th translate="leaguegenApp.equip.pagat">Pagat</th>
+                    <th translate="leaguegenApp.equip.grup">grup</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="equip in equips">
+                    <td><a ui-sref="equipDetail({id:equip.id})">{{equip.id}}</a></td>
+                    <td>{{equip.nom}}</td>
+                    <td>{{equip.gols_favor}}</td>
+                    <td>{{equip.gols_contra}}</td>
+                    <td>{{equip.pj}}</td>
+                    <td>{{equip.pg}}</td>
+                    <td>{{equip.pe}}</td>
+                    <td>{{equip.pp}}</td>
+                    <td>{{equip.data_alta}}</td>
+                    <td>{{equip.pagat}}</td>
+                    <td>{{equip.grup.nom}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="equipDetail({id:equip.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="showUpdate(equip.id)"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(equip.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

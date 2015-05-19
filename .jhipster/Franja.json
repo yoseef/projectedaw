@@ -1,0 +1,53 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "partit",
+            "relationshipNameCapitalized": "Partit",
+            "relationshipFieldName": "partit",
+            "otherEntityName": "partit",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "Partit",
+            "ownerSide": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "dia",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Dia",
+            "fieldNameUnderscored": "dia",
+            "fieldInJavaBeanMethod": "Dia",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "hora_inici",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "Hora_inici",
+            "fieldNameUnderscored": "hora_inici",
+            "fieldInJavaBeanMethod": "Hora_inici",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "hora_fi",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "Hora_fi",
+            "fieldNameUnderscored": "hora_fi",
+            "fieldInJavaBeanMethod": "Hora_fi",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519144410",
+    "pagination": "no",
+    "validation": false
+}

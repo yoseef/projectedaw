@@ -1,0 +1,134 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "grup",
+            "relationshipNameCapitalized": "Grup",
+            "relationshipFieldName": "grup",
+            "otherEntityName": "grup",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Grup",
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "partit",
+            "relationshipNameCapitalized": "Partit",
+            "relationshipFieldName": "partit",
+            "otherEntityName": "partit",
+            "relationshipType": "many-to-many",
+            "otherEntityNameCapitalized": "Partit",
+            "ownerSide": false
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "jugador",
+            "relationshipNameCapitalized": "Jugador",
+            "relationshipFieldName": "jugador",
+            "otherEntityName": "jugador",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Jugador"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Nom",
+            "fieldNameUnderscored": "nom",
+            "fieldInJavaBeanMethod": "Nom",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "gols_favor",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Gols_favor",
+            "fieldNameUnderscored": "gols_favor",
+            "fieldInJavaBeanMethod": "Gols_favor",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "gols_contra",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Gols_contra",
+            "fieldNameUnderscored": "gols_contra",
+            "fieldInJavaBeanMethod": "Gols_contra",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "pj",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Pj",
+            "fieldNameUnderscored": "pj",
+            "fieldInJavaBeanMethod": "Pj",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "pg",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Pg",
+            "fieldNameUnderscored": "pg",
+            "fieldInJavaBeanMethod": "Pg",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "pe",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Pe",
+            "fieldNameUnderscored": "pe",
+            "fieldInJavaBeanMethod": "Pe",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "pp",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Pp",
+            "fieldNameUnderscored": "pp",
+            "fieldInJavaBeanMethod": "Pp",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "data_alta",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Data_alta",
+            "fieldNameUnderscored": "data_alta",
+            "fieldInJavaBeanMethod": "Data_alta",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "pagat",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Pagat",
+            "fieldNameUnderscored": "pagat",
+            "fieldInJavaBeanMethod": "Pagat",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519143929",
+    "pagination": "no",
+    "validation": true
+}

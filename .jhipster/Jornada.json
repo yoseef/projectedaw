@@ -1,0 +1,47 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "grup",
+            "relationshipNameCapitalized": "Grup",
+            "relationshipFieldName": "grup",
+            "otherEntityName": "grup",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Grup",
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "partit",
+            "relationshipNameCapitalized": "Partit",
+            "relationshipFieldName": "partit",
+            "otherEntityName": "partit",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Partit"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "numero",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Numero",
+            "fieldNameUnderscored": "numero",
+            "fieldInJavaBeanMethod": "Numero",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519142927",
+    "pagination": "no",
+    "validation": true
+}

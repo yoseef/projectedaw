@@ -1,0 +1,101 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "jornada",
+            "relationshipNameCapitalized": "Jornada",
+            "relationshipFieldName": "jornada",
+            "otherEntityName": "jornada",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Jornada",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "equip",
+            "relationshipNameCapitalized": "Equip",
+            "relationshipFieldName": "equip",
+            "otherEntityName": "equip",
+            "relationshipType": "many-to-many",
+            "otherEntityNameCapitalized": "Equip",
+            "otherEntityField": "nom",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "franja",
+            "relationshipNameCapitalized": "Franja",
+            "relationshipFieldName": "franja",
+            "otherEntityName": "franja",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "Franja",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nom_v",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Nom_v",
+            "fieldNameUnderscored": "nom_v",
+            "fieldInJavaBeanMethod": "Nom_v",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "nom_l",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Nom_l",
+            "fieldNameUnderscored": "nom_l",
+            "fieldInJavaBeanMethod": "Nom_l",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "gols_v",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Gols_v",
+            "fieldNameUnderscored": "gols_v",
+            "fieldInJavaBeanMethod": "Gols_v",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "gols_l",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Gols_l",
+            "fieldNameUnderscored": "gols_l",
+            "fieldInJavaBeanMethod": "Gols_l",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "data",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Data",
+            "fieldNameUnderscored": "data",
+            "fieldInJavaBeanMethod": "Data",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "arbitre",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Arbitre",
+            "fieldNameUnderscored": "arbitre",
+            "fieldInJavaBeanMethod": "Arbitre",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": true,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519144259",
+    "pagination": "no",
+    "validation": false
+}

@@ -1,0 +1,58 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "equip",
+            "relationshipNameCapitalized": "Equip",
+            "relationshipFieldName": "equip",
+            "otherEntityName": "equip",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Equip",
+            "otherEntityField": "nom"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Nom",
+            "fieldNameUnderscored": "nom",
+            "fieldInJavaBeanMethod": "Nom",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "gols",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Gols",
+            "fieldNameUnderscored": "gols",
+            "fieldInJavaBeanMethod": "Gols",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "any_neix",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Any_neix",
+            "fieldNameUnderscored": "any_neix",
+            "fieldInJavaBeanMethod": "Any_neix",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150519144043",
+    "pagination": "no",
+    "validation": true
+}
