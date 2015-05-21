@@ -9,5 +9,5 @@ import java.util.List;
  * Spring Data JPA repository for the Jugador entity.
  */
 public interface JugadorRepository extends JpaRepository<Jugador,Long> {
-
+    Jugador findById(Long id);
 }

@@ -284,7 +284,8 @@ module.exports = function (grunt) {
                         '*.html',
                         'scripts/**/*.html',
                         'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}',
-                        'assets/fonts/*'
+                        'assets/fonts/*',
+                        'assets/bubble/**/*.{png,css,html,js}'
                     ]
                 }, {
                     expand: true,

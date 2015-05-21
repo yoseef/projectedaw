@@ -84,6 +84,18 @@ public class GrupResource {
     }
 
     /**
+     * GET  /grups -> get all the grups.
+     */
+    @RequestMapping(value = "/grupsByTemp",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Grup> getAllByTemp() {
+        log.debug("REST request to get all Grups by Temp");
+        return grupRepository.findAll();
+    }
+
+    /**
      * GET  /grups/:id -> get the "id" grup.
      */
     @RequestMapping(value = "/grups/{id}",
