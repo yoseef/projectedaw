@@ -28,6 +28,15 @@
             "otherEntityName": "jugador",
             "relationshipType": "one-to-many",
             "otherEntityNameCapitalized": "Jugador"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "user",
+            "relationshipNameCapitalized": "User",
+            "relationshipFieldName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "User"
         }
     ],
     "fields": [

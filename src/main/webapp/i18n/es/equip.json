@@ -23,7 +23,8 @@
             "pagat": "Pagat",
             "grup": "grup",
             "partit": "partit",
-            "jugador": "jugador"
+            "jugador": "jugador",
+            "user": "user"
         }
     }
 }

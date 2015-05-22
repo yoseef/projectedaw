@@ -72,10 +72,13 @@ public class Equip implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
 
-    @OneToMany(mappedBy = "equip")
+    @OneToMany(mappedBy = "equip",fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();
+
+    @OneToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -181,6 +184,20 @@ public class Equip implements Serializable {
         this.jugadors = jugadors;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void addJugador(Jugador j){
+        jugadors.add(j);
+    }
+    public void removeJogador(Jugador j){
+        jugadors.remove(j);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {

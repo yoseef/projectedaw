@@ -99,7 +99,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/protected/**").authenticated()
-        .and()
+//            .antMatchers("/api/temporadas").hasAuthority(AuthoritiesConstants.ADMIN)
+//            .antMatchers("/api/jornadas").hasAuthority(AuthoritiesConstants.ADMIN)
+//            .antMatchers("/api/grups").hasAuthority(AuthoritiesConstants.ADMIN)
+
+            .and()
             .apply(securityConfigurerAdapter());
 
     }

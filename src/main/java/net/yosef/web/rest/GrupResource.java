@@ -4,11 +4,13 @@ import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Grup;
 import net.yosef.repository.GrupRepository;
 import net.yosef.repository.search.GrupSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -40,9 +42,12 @@ public class GrupResource {
     /**
      * POST  /grups -> Create a new grup.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/grups",
             method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+
     @Timed
     public ResponseEntity<Void> create(@Valid @RequestBody Grup grup) throws URISyntaxException {
         log.debug("REST request to save Grup : {}", grup);
@@ -57,6 +62,7 @@ public class GrupResource {
     /**
      * PUT  /grups -> Updates an existing grup.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/grups",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -114,6 +120,7 @@ public class GrupResource {
     /**
      * DELETE  /grups/:id -> delete the "id" grup.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/grups/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

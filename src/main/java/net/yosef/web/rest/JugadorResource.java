@@ -1,14 +1,17 @@
 package net.yosef.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import net.yosef.domain.Equip;
 import net.yosef.domain.Jugador;
 import net.yosef.repository.JugadorRepository;
 import net.yosef.repository.search.JugadorSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
+
+import net.yosef.repository.EquipRepository;
+import net.yosef.repository.search.EquipSearchRepository;
 
 /**
  * REST controller for managing Jugador.
@@ -37,9 +43,17 @@ public class JugadorResource {
     @Inject
     private JugadorSearchRepository jugadorSearchRepository;
 
+    @Inject
+    private EquipRepository equipRepository;
+
+    @Inject
+    private EquipSearchRepository equipSearchRepository;
+
+
     /**
      * POST  /jugadors -> Create a new jugador.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.CAPITA})
     @RequestMapping(value = "/jugadors",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,12 +65,20 @@ public class JugadorResource {
         }
         jugadorRepository.save(jugador);
         jugadorSearchRepository.save(jugador);
+        if (jugador.getEquip() != null){
+            Long idEquip = jugador.getEquip().getId();
+            Equip e = equipRepository.findOne(idEquip);
+            e.addJugador(jugador);
+            equipRepository.save(e);
+            equipSearchRepository.save(e);
+        }
         return ResponseEntity.created(new URI("/api/jugadors/" + jugador.getId())).build();
     }
 
     /**
      * PUT  /jugadors -> Updates an existing jugador.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.CAPITA})
     @RequestMapping(value = "/jugadors",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,6 +124,7 @@ public class JugadorResource {
     /**
      * DELETE  /jugadors/:id -> delete the "id" jugador.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.CAPITA})
     @RequestMapping(value = "/jugadors/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

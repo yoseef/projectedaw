@@ -4,11 +4,13 @@ import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Jornada;
 import net.yosef.repository.JornadaRepository;
 import net.yosef.repository.search.JornadaSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -40,6 +42,7 @@ public class JornadaResource {
     /**
      * POST  /jornadas -> Create a new jornada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/jornadas",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,6 +60,7 @@ public class JornadaResource {
     /**
      * PUT  /jornadas -> Updates an existing jornada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/jornadas",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,6 +106,7 @@ public class JornadaResource {
     /**
      * DELETE  /jornadas/:id -> delete the "id" jornada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/jornadas/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

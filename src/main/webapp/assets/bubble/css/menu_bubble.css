@@ -116,6 +116,7 @@ body,
 
 /* Menu */
 .menu-wrap {
+    top: 64px;
 	position: absolute;
 	z-index: 1001;
 	width: 280px;

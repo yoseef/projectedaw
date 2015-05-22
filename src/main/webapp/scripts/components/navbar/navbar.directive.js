@@ -30,9 +30,11 @@ angular.module('leaguegenApp')
                 scope.location = location;
                 scope.$watch('location.path()', function(newPath) {
                     if (path === newPath) {
+
                         element.addClass(clazz);
                     } else {
-                        element.removeClass(clazz);
+                        console.log('newPath ' + newPath);
+
                     }
                 });
             }

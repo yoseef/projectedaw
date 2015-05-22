@@ -45,11 +45,14 @@
                         <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
+                <li ng-class="" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-user"></span>
-                                    <span class="hidden-tablet" translate="global.menu.account.main">
+                                    <span ng-if="account" class="hidden-tablet" >
+                                        {{account}}
+                                    </span>
+                                    <span ng-if="!account" class="hidden-tablet" >
                                         Account
                                     </span>
                                     <b class="caret"></b>

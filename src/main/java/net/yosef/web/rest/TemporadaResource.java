@@ -4,11 +4,13 @@ import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Temporada;
 import net.yosef.repository.TemporadaRepository;
 import net.yosef.repository.search.TemporadaSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -40,6 +42,7 @@ public class TemporadaResource {
     /**
      * POST  /temporadas -> Create a new temporada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/temporadas",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,6 +60,7 @@ public class TemporadaResource {
     /**
      * PUT  /temporadas -> Updates an existing temporada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/temporadas",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,6 +106,7 @@ public class TemporadaResource {
     /**
      * DELETE  /temporadas/:id -> delete the "id" temporada.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/temporadas/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

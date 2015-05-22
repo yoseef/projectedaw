@@ -4,11 +4,13 @@ import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Franja;
 import net.yosef.repository.FranjaRepository;
 import net.yosef.repository.search.FranjaSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -39,6 +41,7 @@ public class FranjaResource {
     /**
      * POST  /franjas -> Create a new franja.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/franjas",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,6 +59,7 @@ public class FranjaResource {
     /**
      * PUT  /franjas -> Updates an existing franja.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/franjas",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -101,6 +105,7 @@ public class FranjaResource {
     /**
      * DELETE  /franjas/:id -> delete the "id" franja.
      */
+    @Secured({AuthoritiesConstants.ADMIN})
     @RequestMapping(value = "/franjas/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

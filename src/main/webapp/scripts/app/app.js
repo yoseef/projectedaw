@@ -7,6 +7,11 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            var closebtn = document.getElementById( 'close-button' );
+            if (document.body.getAttribute('class') == "ng-scope show-menu") {
+                console.log('menu obert, tancant...');
+                closebtn.click();
+            }
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
@@ -21,6 +26,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+
             var titleKey = 'global.title';
 
             $rootScope.previousStateName = fromState.name;
@@ -33,6 +39,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             $translate(titleKey).then(function (title) {
                 // Change window title with translated one
                 $window.document.title = title;
+
             });
         });
 

@@ -7,7 +7,7 @@ angular.module('leaguegenApp')
             templateUrl: 'assets/menu.html',
             link: function (scope, element) {
                 console.log('Hola silde menu');
-                (function() {
+                //(function() {
 
                     var bodyEl = document.body,
                         content = document.querySelector( '.content-wrap' ),
@@ -74,7 +74,7 @@ angular.module('leaguegenApp')
 
                     init();
 
-                })();
+                //})();
             }
         }
     });

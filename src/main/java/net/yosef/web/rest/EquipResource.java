@@ -4,11 +4,13 @@ import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Equip;
 import net.yosef.repository.EquipRepository;
 import net.yosef.repository.search.EquipSearchRepository;
+import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -40,6 +42,7 @@ public class EquipResource {
     /**
      * POST  /equips -> Create a new equip.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.USER})
     @RequestMapping(value = "/equips",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,12 +54,14 @@ public class EquipResource {
         }
         equipRepository.save(equip);
         equipSearchRepository.save(equip);
+
         return ResponseEntity.created(new URI("/api/equips/" + equip.getId())).build();
     }
 
     /**
      * PUT  /equips -> Updates an existing equip.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.CAPITA})
     @RequestMapping(value = "/equips",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,6 +107,7 @@ public class EquipResource {
     /**
      * DELETE  /equips/:id -> delete the "id" equip.
      */
+    @Secured({AuthoritiesConstants.ADMIN,AuthoritiesConstants.CAPITA})
     @RequestMapping(value = "/equips/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -99,27 +99,4 @@
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
     </button>
-
-    <h2><span >Jugadors</span> jugador </h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th translate="entity.detail.field">Field</th>
-                <th translate="entity.detail.value">Value</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="jugador in jugadors">
-                <td>
-                    <span >{{jugador.nom}}</span>
-                </td>
-                <td>
-                    <input type="text" class="input-sm form-control" value="{{jugador.any_neix}}" readonly>
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
-    </div>
 </div>
