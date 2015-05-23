@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .controller('EquipController', function ($scope, Equip, Grup, Partit, Jugador, User, EquipSearch) {
+    .controller('EquipController', function ($scope, Equip, Grup, Partit, Jugador, User, Classificacio, EquipSearch) {
         $scope.equips = [];
         $scope.grups = Grup.query();
         $scope.partits = Partit.query();
         $scope.jugadors = Jugador.query();
         $scope.users = User.query();
+        $scope.classificacios = Classificacio.query();
         $scope.loadAll = function() {
             Equip.query(function(result) {
                $scope.equips = result;

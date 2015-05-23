@@ -13,6 +13,7 @@
                 "jugador": "Jugador",
                 "partit": "Partit",
                 "franja": "Franja",
+                "classificacio": "Classificacio",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

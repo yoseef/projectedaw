@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .controller('EquipDetailController', function ($scope, $stateParams, Equip, Grup, Partit, Jugador, User) {
+    .controller('EquipDetailController', function ($scope, $stateParams, Equip, Grup, Partit, Jugador, User, Classificacio) {
         $scope.equip = {};
         $scope.load = function (id) {
             Equip.get({id: id}, function(result) {

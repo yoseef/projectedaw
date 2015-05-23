@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Equip.
+    -->
+    <changeSet id="20150519143929" author="jhipster">
+        <createTable tableName="EQUIP">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nom" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="gols_favor" type="integer"/>
+            <column name="gols_contra" type="integer"/>
+            <column name="pj" type="integer"/>
+            <column name="pg" type="integer"/>
+            <column name="pe" type="integer"/>
+            <column name="pp" type="integer"/>
+            <column name="data_alta" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="pagat" type="bit"/>
+            <column name="grup_id" type="bigint"/>
+            <column name="classificacio_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="grup_id"
+                                 baseTableName="EQUIP"
+                                 constraintName="fk_equip_grup_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="GRUP"/>
+
+        <addForeignKeyConstraint baseColumnNames="classificacio_id"
+                                 baseTableName="EQUIP"
+                                 constraintName="fk_equip_classificacio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICACIO"/>
+
+    </changeSet>
+</databaseChangeLog>

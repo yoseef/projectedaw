@@ -24,7 +24,8 @@
             "grup": "grup",
             "partit": "partit",
             "jugador": "jugador",
-            "user": "user"
+            "user": "user",
+            "classificacio": "classificacio"
         }
     }
 }

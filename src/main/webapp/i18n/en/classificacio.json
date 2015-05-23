@@ -1,0 +1,21 @@
+{
+    "leaguegenApp": {
+        "classificacio" : {
+            "home": {
+                "title": "Classificacios",
+                "createLabel": "Create a new Classificacio",
+                "createOrEditLabel": "Create or edit a Classificacio"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Classificacio {{ id }}?"
+            },
+            "detail": {
+                "title": "Classificacio"
+            },
+            "punts": "Punts",
+            "temporada": "temporada",
+            "grup": "grup",
+            "equip": "equip"
+        }
+    }
+}

@@ -37,6 +37,16 @@
             "otherEntityName": "user",
             "relationshipType": "one-to-one",
             "otherEntityNameCapitalized": "User"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "classificacio",
+            "relationshipNameCapitalized": "Classificacio",
+            "relationshipFieldName": "classificacio",
+            "otherEntityName": "classificacio",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Classificacio",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

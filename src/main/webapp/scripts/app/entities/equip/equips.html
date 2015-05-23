@@ -115,6 +115,11 @@
                             <select class="form-control" name="grup" ng-model="equip.grup.id" ng-options="grup.id as grup.nom for grup in grups">
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.equip.classificacio">classificacio</label>
+                            <select class="form-control" name="classificacio" ng-model="equip.classificacio.id" ng-options="classificacio.id as classificacio.id for classificacio in classificacios">
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
@@ -169,6 +174,7 @@
                     <th translate="leaguegenApp.equip.data_alta">Data_alta</th>
                     <th translate="leaguegenApp.equip.pagat">Pagat</th>
                     <th translate="leaguegenApp.equip.grup">grup</th>
+                    <th translate="leaguegenApp.equip.classificacio">classificacio</th>
                     <th></th>
                 </tr>
             </thead>
@@ -185,6 +191,7 @@
                     <td>{{equip.data_alta}}</td>
                     <td>{{equip.pagat}}</td>
                     <td>{{equip.grup.nom}}</td>
+                    <td>{{equip.classificacio.id}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="equipDetail({id:equip.id})"

@@ -24,7 +24,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "EQUIP")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="equip")
+@Document(indexName = "equip")
 public class Equip implements Serializable {
 
     @Id
@@ -72,13 +72,26 @@ public class Equip implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
 
-    @OneToMany(mappedBy = "equip",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "equip")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();
 
     @OneToOne
     private User user;
+
+    @ManyToOne
+    private Classificacio classificacio;
+
+    public void addJugador(Jugador j) {
+        if (jugadors != null && j != null)
+            jugadors.add(j);
+    }
+
+    public void removeJugador(Jugador j) {
+        if (jugadors != null && j != null)
+            jugadors.remove(j);
+    }
 
     public Long getId() {
         return id;
@@ -192,12 +205,14 @@ public class Equip implements Serializable {
         this.user = user;
     }
 
-    public void addJugador(Jugador j){
-        jugadors.add(j);
+    public Classificacio getClassificacio() {
+        return classificacio;
     }
-    public void removeJogador(Jugador j){
-        jugadors.remove(j);
+
+    public void setClassificacio(Classificacio classificacio) {
+        this.classificacio = classificacio;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -209,7 +224,7 @@ public class Equip implements Serializable {
 
         Equip equip = (Equip) o;
 
-        if ( ! Objects.equals(id, equip.id)) return false;
+        if (!Objects.equals(id, equip.id)) return false;
 
         return true;
     }
@@ -222,16 +237,16 @@ public class Equip implements Serializable {
     @Override
     public String toString() {
         return "Equip{" +
-                "id=" + id +
-                ", nom='" + nom + "'" +
-                ", gols_favor='" + gols_favor + "'" +
-                ", gols_contra='" + gols_contra + "'" +
-                ", pj='" + pj + "'" +
-                ", pg='" + pg + "'" +
-                ", pe='" + pe + "'" +
-                ", pp='" + pp + "'" +
-                ", data_alta='" + data_alta + "'" +
-                ", pagat='" + pagat + "'" +
-                '}';
+            "id=" + id +
+            ", nom='" + nom + "'" +
+            ", gols_favor='" + gols_favor + "'" +
+            ", gols_contra='" + gols_contra + "'" +
+            ", pj='" + pj + "'" +
+            ", pg='" + pg + "'" +
+            ", pe='" + pe + "'" +
+            ", pp='" + pp + "'" +
+            ", data_alta='" + data_alta + "'" +
+            ", pagat='" + pagat + "'" +
+            '}';
     }
 }

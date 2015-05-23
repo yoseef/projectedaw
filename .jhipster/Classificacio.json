@@ -1,0 +1,57 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "temporada",
+            "relationshipNameCapitalized": "Temporada",
+            "relationshipFieldName": "temporada",
+            "otherEntityName": "temporada",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Temporada",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "grup",
+            "relationshipNameCapitalized": "Grup",
+            "relationshipFieldName": "grup",
+            "otherEntityName": "grup",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Grup",
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "equip",
+            "relationshipNameCapitalized": "Equip",
+            "relationshipFieldName": "equip",
+            "otherEntityName": "equip",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Equip"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "punts",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Punts",
+            "fieldNameUnderscored": "punts",
+            "fieldInJavaBeanMethod": "Punts",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150523161854",
+    "pagination": "no",
+    "validation": true
+}
