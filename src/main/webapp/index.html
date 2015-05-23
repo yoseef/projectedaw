@@ -15,6 +15,14 @@
         <!-- build:css assets/styles/main.css -->
         <link rel="stylesheet" href="assets/styles/main.css">
         <!-- endbuild -->
+
+        <!--<link rel="stylesheet" type="text/css" href="assets/bubble/css/normalize.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="assets/bubble/css/demo.css" />-->
+        <link rel="stylesheet" type="text/css" href="assets/bubble/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="assets/bubble/css/menu_bubble.css" />
+
+
+        <script src="assets/bubble/js/snap.svg-min.js"></script>
     </head>
     <body ng-app="leaguegenApp">
         <!--[if lt IE 9]>
@@ -22,8 +30,13 @@
         <![endif]-->
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
-        <div class="container">
-            <div class="well" ui-view="content"></div>
+        <!--<div ui-view="sidemenu" ng-cloak="">-->
+            <!-- -->
+        <!--</div>-->
+        <sidemenu></sidemenu>
+        <div class="container content-wrap">
+            <button class="menu-button" id="open-button">Open Menu</button>
+            <div class="well" ng-cloak="" ui-view="content"></div>
 
             <div class="footer">
                 <p translate="footer">This is your footer</p>
@@ -122,6 +135,45 @@
         <script src="scripts/app/main/main.js"></script>
         <script src="scripts/app/main/main.controller.js"></script>
         <script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
+        <script src="scripts/app/entities/temporada/temporada.js"></script>
+        <script src="scripts/app/entities/temporada/temporada.controller.js"></script>
+        <script src="scripts/app/entities/temporada/temporada-detail.controller.js"></script>
+        <script src="scripts/components/entities/temporada/temporada.service.js"></script>
+        <script src="scripts/components/entities/temporada/temporada.search.service.js"></script>
+        <script src="scripts/app/entities/grup/grup.js"></script>
+        <script src="scripts/app/entities/grup/grup.controller.js"></script>
+        <script src="scripts/app/entities/grup/grup-detail.controller.js"></script>
+        <script src="scripts/components/entities/grup/grup.service.js"></script>
+        <script src="scripts/components/entities/grup/grup.search.service.js"></script>
+        <script src="scripts/app/entities/jornada/jornada.js"></script>
+        <script src="scripts/app/entities/jornada/jornada.controller.js"></script>
+        <script src="scripts/app/entities/jornada/jornada-detail.controller.js"></script>
+        <script src="scripts/components/entities/jornada/jornada.service.js"></script>
+        <script src="scripts/components/entities/jornada/jornada.search.service.js"></script>
+        <script src="scripts/app/entities/equip/equip.js"></script>
+        <script src="scripts/app/entities/equip/equip.controller.js"></script>
+        <script src="scripts/app/entities/equip/equip-detail.controller.js"></script>
+        <script src="scripts/components/entities/equip/equip.service.js"></script>
+        <script src="scripts/components/entities/equip/equip.search.service.js"></script>
+        <script src="scripts/app/entities/jugador/jugador.js"></script>
+        <script src="scripts/app/entities/jugador/jugador.controller.js"></script>
+        <script src="scripts/app/entities/jugador/jugador-detail.controller.js"></script>
+        <script src="scripts/components/entities/jugador/jugador.service.js"></script>
+        <script src="scripts/components/entities/jugador/jugador.search.service.js"></script>
+        <script src="scripts/app/entities/partit/partit.js"></script>
+        <script src="scripts/app/entities/partit/partit.controller.js"></script>
+        <script src="scripts/app/entities/partit/partit-detail.controller.js"></script>
+        <script src="scripts/components/entities/partit/partit.service.js"></script>
+        <script src="scripts/components/entities/partit/partit.search.service.js"></script>
+        <script src="scripts/app/entities/franja/franja.js"></script>
+        <script src="scripts/app/entities/franja/franja.controller.js"></script>
+        <script src="scripts/app/entities/franja/franja-detail.controller.js"></script>
+        <script src="scripts/components/entities/franja/franja.service.js"></script>
+        <script src="scripts/components/entities/franja/franja.search.service.js"></script>
+        <script src="scripts/directives/sidemenu.js"></script>
         <!-- endbuild -->
+
+        <script src="assets/bubble/js/classie.js"></script>
+        <!--<script src="assets/bubble/js/main4.js"></script>-->
 </body>
 </html>

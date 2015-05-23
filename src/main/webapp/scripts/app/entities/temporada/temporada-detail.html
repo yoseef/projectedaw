@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span translate="leaguegenApp.temporada.detail.title">Temporada</span> {{temporada.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.temporada.any">Any</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{temporada.any}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.temporada.descripcio">Descripcio</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{temporada.descripcio}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="temporada"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

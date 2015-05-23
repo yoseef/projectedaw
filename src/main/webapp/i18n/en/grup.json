@@ -1,0 +1,21 @@
+{
+    "leaguegenApp": {
+        "grup" : {
+            "home": {
+                "title": "Grups",
+                "createLabel": "Create a new Grup",
+                "createOrEditLabel": "Create or edit a Grup"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Grup {{ id }}?"
+            },
+            "detail": {
+                "title": "Grup"
+            },
+            "nom": "Nom",
+            "temporada": "temporada",
+            "equip": "equip",
+            "jornada": "jornada"
+        }
+    }
+}

@@ -6,6 +6,9 @@ angular.module('leaguegenApp')
             _authenticated = false;
 
         return {
+            getIdentity: function (){
+              return  _identity;
+            },
             isIdentityResolved: function () {
                 return angular.isDefined(_identity);
             },

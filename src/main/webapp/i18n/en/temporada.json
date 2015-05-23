@@ -1,0 +1,20 @@
+{
+    "leaguegenApp": {
+        "temporada" : {
+            "home": {
+                "title": "Temporadas",
+                "createLabel": "Create a new Temporada",
+                "createOrEditLabel": "Create or edit a Temporada"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Temporada {{ id }}?"
+            },
+            "detail": {
+                "title": "Temporada"
+            },
+            "any": "Any",
+            "descripcio": "Descripcio",
+            "grup": "grup"
+        }
+    }
+}

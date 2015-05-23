@@ -28,14 +28,31 @@
                                 </span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ><a ui-sref="temporada"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.temporada">temporada</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="grup"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.grup">grup</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="jornada"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.jornada">jornada</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="equip"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.equip">equip</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="jugador"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.jugador">jugador</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="partit"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.partit">partit</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="franja"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span translate="global.menu.entities.franja">franja</span></a></li>
                         <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
+                <li ng-class="" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-user"></span>
-                                    <span class="hidden-tablet" translate="global.menu.account.main">
+                                    <span ng-if="account" class="hidden-tablet" >
+                                        {{account}}
+                                    </span>
+                                    <span ng-if="!account" class="hidden-tablet" >
                                         Account
                                     </span>
                                     <b class="caret"></b>

@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span translate="leaguegenApp.partit.detail.title">Partit</span> {{partit.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.nom_v">Nom_v</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.nom_v}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.nom_l">Nom_l</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.nom_l}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.gols_v">Gols_v</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.gols_v}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.gols_l">Gols_l</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.gols_l}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.data">Data</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.data}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.arbitre">Arbitre</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.arbitre}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.partit.jornada">jornada</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{partit.jornada.numero}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="partit"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

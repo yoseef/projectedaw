@@ -84,6 +84,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authorities = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Equip equip;
+
+
     public Long getId() {
         return id;
     }

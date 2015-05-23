@@ -1,0 +1,174 @@
+<div>
+
+    <h2 translate="leaguegenApp.partit.home.title">Partit</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#savePartitModal" ng-click="clear()">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="leaguegenApp.partit.home.createLabel">Create a new Partit</span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                    </div>
+                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Partit</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="savePartitModal" tabindex="-1" role="dialog" aria-labelledby="myPartitLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="save()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myPartitLabel" translate="leaguegenApp.partit.home.createOrEditLabel">Create or edit a Partit</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="partit.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.nom_v">Nom_v</label>
+                            <input type="text" class="form-control" name="nom_v"
+                                   ng-model="partit.nom_v">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.nom_l">Nom_l</label>
+                            <input type="text" class="form-control" name="nom_l"
+                                   ng-model="partit.nom_l">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.gols_v">Gols_v</label>
+                            <input type="number" class="form-control" name="gols_v"
+                                   ng-model="partit.gols_v">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.gols_l">Gols_l</label>
+                            <input type="number" class="form-control" name="gols_l"
+                                   ng-model="partit.gols_l">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.data">Data</label>
+                            <input type="date" class="form-control" name="data"
+                                   ng-model="partit.data">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.arbitre">Arbitre</label>
+                            <input type="text" class="form-control" name="arbitre"
+                                   ng-model="partit.arbitre">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.jornada">jornada</label>
+                            <select class="form-control" name="jornada" ng-model="partit.jornada.id" ng-options="jornada.id as jornada.numero for jornada in jornadas">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leaguegenApp.partit.equip">equip</label>
+                            <select class="form-control" multiple name="equip" ng-model="partit.equips" ng-options="equip as equip.nom for equip in equips track by equip.id">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deletePartitConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(partit.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="leaguegenApp.partit.delete.question" translate-values="{id: '{{partit.id}}'}">Are you sure you want to delete this Partit?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="leaguegenApp.partit.nom_v">Nom_v</th>
+                    <th translate="leaguegenApp.partit.nom_l">Nom_l</th>
+                    <th translate="leaguegenApp.partit.gols_v">Gols_v</th>
+                    <th translate="leaguegenApp.partit.gols_l">Gols_l</th>
+                    <th translate="leaguegenApp.partit.data">Data</th>
+                    <th translate="leaguegenApp.partit.arbitre">Arbitre</th>
+                    <th translate="leaguegenApp.partit.jornada">jornada</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="partit in partits">
+                    <td><a ui-sref="partitDetail({id:partit.id})">{{partit.id}}</a></td>
+                    <td>{{partit.nom_v}}</td>
+                    <td>{{partit.nom_l}}</td>
+                    <td>{{partit.gols_v}}</td>
+                    <td>{{partit.gols_l}}</td>
+                    <td>{{partit.data}}</td>
+                    <td>{{partit.arbitre}}</td>
+                    <td>{{partit.jornada.numero}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="partitDetail({id:partit.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="showUpdate(partit.id)"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(partit.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

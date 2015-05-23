@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span translate="leaguegenApp.jugador.detail.title">Jugador</span> {{jugador.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.jugador.nom">Nom</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{jugador.nom}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.jugador.gols">Gols</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{jugador.gols}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.jugador.any_neix">Any_neix</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{jugador.any_neix}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leaguegenApp.jugador.equip">equip</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{jugador.equip.nom}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="jugador"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
