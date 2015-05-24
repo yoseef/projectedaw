@@ -28,8 +28,7 @@ angular.module('leaguegenApp')
  */
     .constant('LANGUAGES', [
         'en',
-        'ca',
-        'es'
+        'ca'
         //JHipster will add new languages here
     ]
 );

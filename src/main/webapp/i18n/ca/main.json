@@ -1,7 +1,7 @@
 {
     "main": {
         "title": "Benvingut, Java Hipster!",
-        "subtitle": "Aquesta és la pàgina principal",
+        "subtitle": "Classificacio",
         "logged": {
             "message": "S'ha connectat amb l'usuari \"{{username}}\"."
         },

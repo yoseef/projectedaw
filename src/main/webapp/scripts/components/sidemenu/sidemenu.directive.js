@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .directive('slidemenu', function() {
+    .directive('sidemenu', function() {
         return {
             restrict: 'E',
-            templateUrl: 'menu.html',
+            templateUrl: 'assets/menu.html',
             link: function (scope, element) {
-                console.log('Hola silde menu');
+                //(function() {
 
                     var bodyEl = document.body,
                         content = document.querySelector( '.content-wrap' ),
@@ -16,8 +16,8 @@ angular.module('leaguegenApp')
 
                         morphEl = document.getElementById( 'morph-shape' ),
                         s = Snap( morphEl.querySelector( 'svg' ) );
-                    path = s.select( 'path' );
-                    var initialPath = this.path.attr('d'),
+                    var path = s.select( 'path' );
+                    var initialPath = path.attr('d'),
                         steps = morphEl.getAttribute( 'data-morph-open' ).split(';');
                     var stepsTotal = steps.length;
                     var isAnimating = false;
@@ -73,7 +73,7 @@ angular.module('leaguegenApp')
 
                     init();
 
-
+                //})();
             }
         }
     });

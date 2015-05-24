@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth,Principal) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -14,11 +14,22 @@ angular.module('leaguegenApp')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register') {
-                    $state.go('home');
+                //console.log(Principal.getIdentity());
+                if(Principal.isInRole("ROLE_ADMIN")){
+                    $state.go('temporada');
+                } else if(Principal.isInRole("ROLE_CAPITA")){
+                    $state.go('equip');
+                } else if(Principal.isInRole("ROLE_USER")){
+                    $state.go('classificacio');
                 } else {
-                    $rootScope.back();
+                    $state.go('home');
                 }
+
+                //if ($rootScope.previousStateName === 'register') {
+                //    $state.go('home');
+                //} else {
+                    //$rootScope.back();
+                //}
             }).catch(function () {
                 $scope.authenticationError = true;
             });

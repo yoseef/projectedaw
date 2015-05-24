@@ -33,10 +33,18 @@
         <!--<div ui-view="sidemenu" ng-cloak="">-->
             <!-- -->
         <!--</div>-->
-        <sidemenu></sidemenu>
+
+
+        <div ng-controller="SidemenuCtrl" ng-switch="isAuthenticated()">
+            <div ng-switch-when="true">
+                <button  class="menu-button" id="open-button">Open Menu</button>
+                <sidemenu></sidemenu>
+            </div>
+        </div>
+
         <div class="container content-wrap">
-            <button class="menu-button" id="open-button">Open Menu</button>
-            <div class="well" ng-cloak="" ui-view="content"></div>
+            <div class="well" ng-cloak="" ui-view="content">
+            </div>
 
             <div class="footer">
                 <p translate="footer">This is your footer</p>
@@ -170,7 +178,8 @@
         <script src="scripts/app/entities/franja/franja-detail.controller.js"></script>
         <script src="scripts/components/entities/franja/franja.service.js"></script>
         <script src="scripts/components/entities/franja/franja.search.service.js"></script>
-        <script src="scripts/directives/sidemenu.js"></script>
+        <script src="scripts/components/sidemenu/sidemenu.directive.js"></script>
+        <script src="scripts/components/sidemenu/sidemenu.controller.js"></script>
         <script src="scripts/app/entities/classificacio/classificacio.js"></script>
         <script src="scripts/app/entities/classificacio/classificacio.controller.js"></script>
         <script src="scripts/app/entities/classificacio/classificacio-detail.controller.js"></script>

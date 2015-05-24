@@ -19,7 +19,8 @@ angular.module('leaguegenApp')
                 $scope.errorUserExists = null;
                 $scope.errorEmailExists = null;
 
-                Auth.createAccount($scope.registerAccount).then(function () {
+                Auth.createAccount($scope.registerAccount).then(function (acc) {
+                    console.log(acc);
                     $scope.success = 'OK';
                 }).catch(function (response) {
                     $scope.success = null;
