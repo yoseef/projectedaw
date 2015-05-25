@@ -13,6 +13,7 @@ angular.module('leaguegenApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/entities/classificacio/classificacios.html',
+                        //templateUrl: 'scripts/app/entities/adminDash/admin-dash.html',
                         controller: 'ClassificacioController'
                     }
                 },

@@ -64,6 +64,7 @@ public class Equip implements Serializable {
     @Column(name = "pagat")
     private Boolean pagat;
 
+    @NotNull
     @ManyToOne
     private Grup grup;
 
@@ -72,7 +73,7 @@ public class Equip implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
 
-    @OneToMany(mappedBy = "equip")
+    @OneToMany(mappedBy = "equip",fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();

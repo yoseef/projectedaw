@@ -16,11 +16,11 @@ angular.module('leaguegenApp')
                 $scope.authenticationError = false;
                 //console.log(Principal.getIdentity());
                 if(Principal.isInRole("ROLE_ADMIN")){
-                    $state.go('temporada');
+                    $state.go('admindash');
                 } else if(Principal.isInRole("ROLE_CAPITA")){
-                    $state.go('equip');
+                    $state.go('capitadash');
                 } else if(Principal.isInRole("ROLE_USER")){
-                    $state.go('classificacio');
+                    $state.go('userdash');
                 } else {
                     $state.go('home');
                 }
