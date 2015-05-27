@@ -12,9 +12,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * A Partit.
@@ -22,8 +20,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "PARTIT")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="partit")
+@Document(indexName = "partit")
 public class Partit implements Serializable {
+    public Partit() {
+    }
+
+    public Partit(Equip local, Equip visitant) {
+        nom_l = local.getNom();
+        nom_v = visitant.getNom();
+
+        equips.put("local", local);
+        equips.put("visitant", visitant);
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,15 +65,17 @@ public class Partit implements Serializable {
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "PARTIT_EQUIP",
-               joinColumns = @JoinColumn(name="partits_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="equips_id", referencedColumnName="ID"))
-    private Set<Equip> equips = new HashSet<>();
+        joinColumns = @JoinColumn(name = "partits_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "equips_id", referencedColumnName = "ID"))
+    private Map<String, Equip> equips = new HashMap<>();
 
     @OneToOne
     private Franja franja;
 
     public Long getId() {
+
         return id;
+
     }
 
     public void setId(Long id) {
@@ -127,11 +138,11 @@ public class Partit implements Serializable {
         this.jornada = jornada;
     }
 
-    public Set<Equip> getEquips() {
+    public Map<String, Equip> getEquips() {
         return equips;
     }
 
-    public void setEquips(Set<Equip> equips) {
+    public void setEquips(Map<String, Equip> equips) {
         this.equips = equips;
     }
 
@@ -154,7 +165,7 @@ public class Partit implements Serializable {
 
         Partit partit = (Partit) o;
 
-        if ( ! Objects.equals(id, partit.id)) return false;
+        if (!Objects.equals(id, partit.id)) return false;
 
         return true;
     }
@@ -167,13 +178,13 @@ public class Partit implements Serializable {
     @Override
     public String toString() {
         return "Partit{" +
-                "id=" + id +
-                ", nom_v='" + nom_v + "'" +
-                ", nom_l='" + nom_l + "'" +
-                ", gols_v='" + gols_v + "'" +
-                ", gols_l='" + gols_l + "'" +
-                ", data='" + data + "'" +
-                ", arbitre='" + arbitre + "'" +
-                '}';
+            "id=" + id +
+            ", nom_v='" + nom_v + "'" +
+            ", nom_l='" + nom_l + "'" +
+            ", gols_v='" + gols_v + "'" +
+            ", gols_l='" + gols_l + "'" +
+            ", data='" + data + "'" +
+            ", arbitre='" + arbitre + "'" +
+            '}';
     }
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Objects;
 
@@ -20,7 +21,12 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="jornada")
 public class Jornada implements Serializable {
+    public Jornada(){}
 
+    public Jornada(int num, List<Partit> partits){
+        numero = num;
+        this.partits.addAll(partits);
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

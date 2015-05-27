@@ -26,7 +26,14 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "equip")
 public class Equip implements Serializable {
+    public Equip(String n, LocalDate d, Grup g){
+        nom = n;
+        data_alta = d;
+        grup = g;
+    }
+    public Equip(){
 
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -53,6 +60,9 @@ public class Equip implements Serializable {
 
     @Column(name = "pp")
     private Integer pp;
+
+    @Column(name = "punts")
+    private Integer pts;
 
     @NotNull
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
@@ -92,6 +102,25 @@ public class Equip implements Serializable {
     public void removeJugador(Jugador j) {
         if (jugadors != null && j != null)
             jugadors.remove(j);
+    }
+    public void haGuanyat(int gols_f, int gols_c ){
+        _Setgols_f_c(gols_f, gols_c);
+        pg++;
+        pts+=3;
+    }
+    public void haEmpatat(int gols_f){
+        _Setgols_f_c(gols_f, gols_f);
+        pe++;
+        pts=+1;
+    }
+    public  void haPerdut(int gols_f, int gols_c){
+        _Setgols_f_c(gols_f, gols_c);
+        pp++;
+    }
+
+    public void _Setgols_f_c(int gols_f, int gols_c){
+        gols_contra=+ gols_c;
+        gols_favor =+ gols_f;
     }
 
     public Long getId() {
@@ -156,6 +185,14 @@ public class Equip implements Serializable {
 
     public void setPp(Integer pp) {
         this.pp = pp;
+    }
+
+    public Integer getPts() {
+        return pts;
+    }
+
+    public void setPts(Integer pts) {
+        this.pts = pts;
     }
 
     public LocalDate getData_alta() {

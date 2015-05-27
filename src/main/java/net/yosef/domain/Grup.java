@@ -20,7 +20,12 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName="grup")
 public class Grup implements Serializable {
+    public Grup(){
 
+    }
+    public Grup(String n){
+        nom = n;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
