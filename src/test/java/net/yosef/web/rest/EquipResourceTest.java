@@ -2,13 +2,17 @@ package net.yosef.web.rest;
 
 import net.yosef.Application;
 import net.yosef.domain.Equip;
+import net.yosef.domain.Grup;
 import net.yosef.repository.EquipRepository;
+import net.yosef.repository.GrupRepository;
 import net.yosef.repository.search.EquipSearchRepository;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import static org.hamcrest.Matchers.hasItem;
+
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -22,7 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import org.joda.time.LocalDate;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -72,6 +78,8 @@ public class EquipResourceTest {
 
     @Inject
     private EquipSearchRepository equipSearchRepository;
+    @Inject
+    private GrupRepository grupRepo;
 
     private MockMvc restEquipMockMvc;
 
@@ -88,6 +96,9 @@ public class EquipResourceTest {
 
     @Before
     public void initTest() {
+        Grup g = new Grup("prova");
+        grupRepo.save(g);
+
         equip = new Equip();
         equip.setNom(DEFAULT_NOM);
         equip.setGols_favor(DEFAULT_GOLS_FAVOR);
@@ -98,6 +109,7 @@ public class EquipResourceTest {
         equip.setPp(DEFAULT_PP);
         equip.setData_alta(DEFAULT_DATA_ALTA);
         equip.setPagat(DEFAULT_PAGAT);
+        equip.setGrup(g);
     }
 
     @Test
@@ -107,9 +119,9 @@ public class EquipResourceTest {
 
         // Create the Equip
         restEquipMockMvc.perform(post("/api/equips")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(equip)))
-                .andExpect(status().isCreated());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(equip)))
+            .andExpect(status().isCreated());
 
         // Validate the Equip in the database
         List<Equip> equips = equipRepository.findAll();
@@ -136,9 +148,9 @@ public class EquipResourceTest {
 
         // Create the Equip, which fails.
         restEquipMockMvc.perform(post("/api/equips")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(equip)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(equip)))
+            .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
         List<Equip> equips = equipRepository.findAll();
@@ -155,9 +167,9 @@ public class EquipResourceTest {
 
         // Create the Equip, which fails.
         restEquipMockMvc.perform(post("/api/equips")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(equip)))
-                .andExpect(status().isBadRequest());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(equip)))
+            .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
         List<Equip> equips = equipRepository.findAll();
@@ -172,18 +184,18 @@ public class EquipResourceTest {
 
         // Get all the equips
         restEquipMockMvc.perform(get("/api/equips"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[*].id").value(hasItem(equip.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
-                .andExpect(jsonPath("$.[*].gols_favor").value(hasItem(DEFAULT_GOLS_FAVOR)))
-                .andExpect(jsonPath("$.[*].gols_contra").value(hasItem(DEFAULT_GOLS_CONTRA)))
-                .andExpect(jsonPath("$.[*].pj").value(hasItem(DEFAULT_PJ)))
-                .andExpect(jsonPath("$.[*].pg").value(hasItem(DEFAULT_PG)))
-                .andExpect(jsonPath("$.[*].pe").value(hasItem(DEFAULT_PE)))
-                .andExpect(jsonPath("$.[*].pp").value(hasItem(DEFAULT_PP)))
-                .andExpect(jsonPath("$.[*].data_alta").value(hasItem(DEFAULT_DATA_ALTA.toString())))
-                .andExpect(jsonPath("$.[*].pagat").value(hasItem(DEFAULT_PAGAT.booleanValue())));
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(equip.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
+            .andExpect(jsonPath("$.[*].gols_favor").value(hasItem(DEFAULT_GOLS_FAVOR)))
+            .andExpect(jsonPath("$.[*].gols_contra").value(hasItem(DEFAULT_GOLS_CONTRA)))
+            .andExpect(jsonPath("$.[*].pj").value(hasItem(DEFAULT_PJ)))
+            .andExpect(jsonPath("$.[*].pg").value(hasItem(DEFAULT_PG)))
+            .andExpect(jsonPath("$.[*].pe").value(hasItem(DEFAULT_PE)))
+            .andExpect(jsonPath("$.[*].pp").value(hasItem(DEFAULT_PP)))
+            .andExpect(jsonPath("$.[*].data_alta").value(hasItem(DEFAULT_DATA_ALTA.toString())))
+            .andExpect(jsonPath("$.[*].pagat").value(hasItem(DEFAULT_PAGAT.booleanValue())));
     }
 
     @Test
@@ -213,7 +225,7 @@ public class EquipResourceTest {
     public void getNonExistingEquip() throws Exception {
         // Get the equip
         restEquipMockMvc.perform(get("/api/equips/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
     @Test
@@ -222,7 +234,7 @@ public class EquipResourceTest {
         // Initialize the database
         equipRepository.saveAndFlush(equip);
 
-		int databaseSizeBeforeUpdate = equipRepository.findAll().size();
+        int databaseSizeBeforeUpdate = equipRepository.findAll().size();
 
         // Update the equip
         equip.setNom(UPDATED_NOM);
@@ -235,9 +247,9 @@ public class EquipResourceTest {
         equip.setData_alta(UPDATED_DATA_ALTA);
         equip.setPagat(UPDATED_PAGAT);
         restEquipMockMvc.perform(put("/api/equips")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(equip)))
-                .andExpect(status().isOk());
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(equip)))
+            .andExpect(status().isOk());
 
         // Validate the Equip in the database
         List<Equip> equips = equipRepository.findAll();
@@ -260,12 +272,12 @@ public class EquipResourceTest {
         // Initialize the database
         equipRepository.saveAndFlush(equip);
 
-		int databaseSizeBeforeDelete = equipRepository.findAll().size();
+        int databaseSizeBeforeDelete = equipRepository.findAll().size();
 
         // Get the equip
         restEquipMockMvc.perform(delete("/api/equips/{id}", equip.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk());
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
 
         // Validate the database is empty
         List<Equip> equips = equipRepository.findAll();

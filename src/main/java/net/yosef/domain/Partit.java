@@ -26,11 +26,14 @@ public class Partit implements Serializable {
     }
 
     public Partit(Equip local, Equip visitant) {
-        nom_l = local.getNom();
-        nom_v = visitant.getNom();
+        if (!local.equals(visitant)){
+            nom_l = local.getNom();
+            nom_v = visitant.getNom();
 
-        equips.put("local", local);
-        equips.put("visitant", visitant);
+            equips.put("local", local);
+            equips.put("visitant", visitant);
+
+        }
 
     }
 
@@ -68,6 +71,9 @@ public class Partit implements Serializable {
         joinColumns = @JoinColumn(name = "partits_id", referencedColumnName = "ID"),
         inverseJoinColumns = @JoinColumn(name = "equips_id", referencedColumnName = "ID"))
     private Map<String, Equip> equips = new HashMap<>();
+
+//    private Equip local;
+//    private Equip visitant;
 
     @OneToOne
     private Franja franja;

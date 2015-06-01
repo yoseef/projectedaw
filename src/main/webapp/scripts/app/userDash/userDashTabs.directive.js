@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .directive('admindashtabs', function() {
+    .directive('userdashtabs', function() {
         return {
             restrict: 'E',
-            templateUrl: 'views/admin-dash-tabs.html',
+            templateUrl: 'views/user-dash-tabs.html',
             link: function (scope, element) {
                 new CBPFWTabs( document.getElementById( 'tabs2' ) );
             }

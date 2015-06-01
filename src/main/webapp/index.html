@@ -38,10 +38,10 @@
         <!--</div>-->
 
 
-        <div ng-controller="SidemenuCtrl" ng-switch="isAuthenticated()">
+        <div ng-controller="SidemenuCtrl" ng-switch="isAuthenticated()" style="overflow: hidden;">
             <div ng-switch-when="true">
                 <button  class="menu-button" id="open-button">Open Menu</button>
-                <sidemenu></sidemenu>
+                <sidemenu ></sidemenu>
             </div>
         </div>
 
@@ -202,6 +202,12 @@
         <!--<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>-->
         <script src="assets/widthTabs/js/cbpFWTabs.js"></script>
         <script src ="scripts/app/adminDash/adminDashTabs.directive.js"></script>
+        <script src ="scripts/app/userDash/userDashTabs.directive.js"></script>
+
+        <script src="scripts/components/image/image.controller.js"></script>
+        <script src="scripts/components/image/image.js"></script>
+        <script src="scripts/components/image/image.service.js"></script>
+
 
 </body>
 </html>

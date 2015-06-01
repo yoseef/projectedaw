@@ -88,6 +88,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JoinColumn(name = "id")
     private Equip equip;
 
+    String img;
 
     public Long getId() {
         return id;
@@ -185,6 +186,21 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.authorities = authorities;
     }
 
+    public Equip getEquip() {
+        return equip;
+    }
+
+    public void setEquip(Equip equip) {
+        this.equip = equip;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {

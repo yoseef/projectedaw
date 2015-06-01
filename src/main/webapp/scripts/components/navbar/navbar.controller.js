@@ -6,7 +6,6 @@ angular.module('leaguegenApp')
             var nick = Principal.getIdentity();
             if(nick){
                 $scope.account = nick.login;
-                console.log($scope.account);
             }
 
             return Principal.isAuthenticated();

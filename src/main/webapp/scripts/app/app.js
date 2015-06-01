@@ -7,7 +7,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-            var closebtn = document.getElementById( 'close-button' );
+            var closebtn = document.getElementById('close-button');
             if (document.body.getAttribute('class') == "ng-scope show-menu") {
                 console.log('menu obert, tancant...');
                 closebtn.click();
@@ -25,7 +25,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             });
         });
 
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
             var titleKey = 'global.title';
 
@@ -43,7 +43,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             });
         });
 
-        $rootScope.back = function() {
+        $rootScope.back = function () {
             // If previous state is 'activate' or do not exist go to 'home'
             if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
                 $state.go('home');
@@ -61,7 +61,7 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                 var token = localStorageService.get('token');
 
                 if (token && token.expires && token.expires > new Date().getTime()) {
-                  config.headers['x-auth-token'] = token.token;
+                    config.headers['x-auth-token'] = token.token;
                 }
 
                 return config;
@@ -95,7 +95,33 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                     return $translate.refresh();
                 }]
             }
-        });
+        })
+            .state('dashboard', {
+                //'abstract': false,
+                //parent: 'entity',
+                url: '/dashboard',
+                data: {
+                    roles: [],
+                    pageTitle: 'leaguegenApp.dashboard.home.title'
+                },
+                views: {
+                    'content@': {
+                        //templateUrl: 'views/admin-dash.html',
+                        controller: function(Principal, $state){
+                            if(Principal.isInRole("ROLE_ADMIN")){
+                                $state.go('admindash');
+                            } else if(Principal.isInRole("ROLE_CAPITA")){
+                                $state.go('capitadash');
+                            } else if(Principal.isInRole("ROLE_USER")){
+                                $state.go('userdash');
+                            } else {
+                                console.log('No s\'ha pogut identificar!')
+                                $state.go('home');
+                            }
+                        }
+                    }
+                }
+            });
 
         $httpProvider.interceptors.push('authInterceptor');
 

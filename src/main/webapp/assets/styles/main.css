@@ -9,6 +9,13 @@
 .modal-backdrop {
     z-index: 0;
 }
+sidemenu {
+    overflow: hidden;
+}
+#map-canvas {
+    width: 500px;
+    height: 400px;
+}
 /* ========================================================================== */
 
 

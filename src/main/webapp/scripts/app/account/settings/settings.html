@@ -1,6 +1,11 @@
 <div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
+            <!--<img ng-src="{{img}}" class="img-rounded img-responsive" >-->
+            <br>
+            <ng-include src="'views/image.html'"> </ng-include>
+        </div>
+        <div class="col-md-8">
             <h2 translate="settings.title" translate-values="{username: '{{settingsAccount.login}}'}">User settings</h2>
 
             <div class="alert alert-success" ng-show="success" translate="settings.messages.success">

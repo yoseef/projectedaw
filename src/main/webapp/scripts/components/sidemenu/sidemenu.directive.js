@@ -4,7 +4,7 @@ angular.module('leaguegenApp')
     .directive('sidemenu', function() {
         return {
             restrict: 'E',
-            templateUrl: 'assets/menu.html',
+            templateUrl: 'views/menu.html',
             link: function (scope, element) {
                 //(function() {
 

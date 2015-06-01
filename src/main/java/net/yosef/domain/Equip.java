@@ -26,14 +26,23 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "equip")
 public class Equip implements Serializable {
-    public Equip(String n, LocalDate d, Grup g){
+    public Equip(String n, LocalDate d, Grup g) {
         nom = n;
         data_alta = d;
         grup = g;
+        gols_favor= 0;
+        gols_contra = 0;
+        pj = 0;
+        pg = 0;
+        pe = 0;
+        pp = 0;
+        pts=0;
     }
-    public Equip(){
+
+    public Equip() {
 
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -83,7 +92,7 @@ public class Equip implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
 
-    @OneToMany(mappedBy = "equip",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "equip", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();
@@ -103,24 +112,30 @@ public class Equip implements Serializable {
         if (jugadors != null && j != null)
             jugadors.remove(j);
     }
-    public void haGuanyat(int gols_f, int gols_c ){
+
+    public void haGuanyat(int gols_f, int gols_c) {
         _Setgols_f_c(gols_f, gols_c);
+        pj++;
         pg++;
-        pts+=3;
+        pts += 3;
     }
-    public void haEmpatat(int gols_f){
+
+    public void haEmpatat(int gols_f) {
         _Setgols_f_c(gols_f, gols_f);
+        pj++;
         pe++;
-        pts=+1;
+        pts = +1;
     }
-    public  void haPerdut(int gols_f, int gols_c){
+
+    public void haPerdut(int gols_f, int gols_c) {
         _Setgols_f_c(gols_f, gols_c);
+        pj++;
         pp++;
     }
 
-    public void _Setgols_f_c(int gols_f, int gols_c){
-        gols_contra=+ gols_c;
-        gols_favor =+ gols_f;
+    public void _Setgols_f_c(int gols_f, int gols_c) {
+        gols_contra = +gols_c;
+        gols_favor = +gols_f;
     }
 
     public Long getId() {
@@ -263,6 +278,7 @@ public class Equip implements Serializable {
         Equip equip = (Equip) o;
 
         if (!Objects.equals(id, equip.id)) return false;
+        if (!Objects.equals(nom, equip.nom)) return false;
 
         return true;
     }
