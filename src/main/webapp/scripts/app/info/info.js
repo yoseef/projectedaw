@@ -11,15 +11,9 @@ angular.module('leaguegenApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'views/main.html',
+                        templateUrl: 'views/info.html',
                         controller: 'InfoController'
                     }
-                },
-                resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('info');
-                        return $translate.refresh();
-                    }]
                 }
             });
     });
