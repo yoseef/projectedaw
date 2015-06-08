@@ -10,60 +10,79 @@ import net.yosef.repository.GrupRepository;
 
 import javax.inject.Inject;
 import java.util.*;
+
+import net.yosef.repository.JornadaRepository;
+import net.yosef.repository.PartitRepository;
 import org.joda.time.LocalDate;
+import org.springframework.stereotype.Controller;
 
 /**
  * Created by user on 23/05/15.
  */
 public class GeneradorJornades {
 
-    static ArrayList<Equip> equips;
-    Random rnd = new Random();
+    private ArrayList<Equip> equips;
+    private List<Jornada> jornades;
+    private Grup grup;
+//    private Random rnd;
+    private LocalDate d_inici;
 
-//    public static void main(String[] args) {
-//        GeneradorJornades gj = new GeneradorJornades();
-//        equips = new ArrayList<>();
-//        gj.addEquips();
-//        gj.generarLliga();
-////        gj.imprimir();
-//
-//    }
+    //    @Inject
+    private PartitRepository partitRepository;
 
+    //    @Inject
+    private JornadaRepository jornadaRepository;
 
-    public void addEquips() {
-        LocalDate d = new LocalDate();
-        Grup g = new Grup("Dilluns");
+    public GeneradorJornades() {
 
-        Equip verd = new Equip("verd", d, g);
-        Equip vermell = new Equip("vermell", d, g);
-        Equip blau = new Equip("blau", d, g);
-        Equip negre = new Equip("negre", d, g);
-        Equip rosa = new Equip("rosa", d, g);
-        Equip groc = new Equip("groc", d, g);
-        Equip taronja = new Equip("taronja", d, g);
-        Equip blanc = new Equip("blanc", d, g);
-
-        equips.add(verd);
-        equips.add(vermell);
-        equips.add(blau);
-        equips.add(blanc);
-        equips.add(negre);
-        equips.add(groc);
-        equips.add(rosa);
-        equips.add(taronja);
     }
 
-    public List<Jornada> generarLliga() {
-        List<Jornada> jornades = new ArrayList<>();
+    public GeneradorJornades(Grup g, LocalDate d_inici) {
+        equips = new ArrayList<>();
+        jornades = new ArrayList<>();
+        grup = g;
+//        rnd = new Random();
+        if (d_inici == null) {
+            this.d_inici = LocalDate.now();
+        } else {
+            this.d_inici = d_inici;
+
+        }
+
+        if (g != null && !g.getEquips().isEmpty()) {
+
+            if (g.getEquips().size() > 3 && g.getEquips().size() % 2 == 0) {
+                equips.addAll(g.getEquips());
+            } else {
+                throw new NullPointerException("Els equips han de ser 4 o mes i parells!");
+            }
+        }
+    }
+
+    public boolean generarLliga() {
         List<Partit> partits = new ArrayList();
         int girar = 0;
-        LocalDate d_inici = new LocalDate(2015,06,01);
-        for (int i = 1; i < equips.size(); i++) {
+//        LocalDate d_inici = new LocalDate(2015, 06, 01);
 
-            generarJornada(partits, girar,d_inici);
+        for (int i = 1; i < equips.size(); i++) {
+            //creem una joranada sense partits, la guardem per obtenir id
+            Jornada jorn = new Jornada();
+            jorn.setNumero(i);
+            jorn.setGrup(grup);
+            jornadaRepository.save(jorn);
+
+            generarJornada(partits, girar, d_inici, jorn);
             rotar();
             girar = (girar + 1) % 2;
-            jornades.add(new Jornada(i, partits));
+
+            //persistem els partits per obtenir id dels partits
+            partitRepository.save(partits);
+
+            //afegim la jorn amb els partits al array
+
+            jorn.setPartits(partits);
+
+            jornades.add(jorn);
             partits.clear();
             d_inici = d_inici.plusDays(7);
         }
@@ -72,11 +91,12 @@ public class GeneradorJornades {
             System.out.println("Jornada : " + j.getNumero());
             System.out.println("-----------");
             j.getPartits().forEach(
-                partit -> System.out.println(partit.getNom_l() + " vs " + partit.getNom_v() + " Dia : "+ partit.getData())
+                partit -> System.out.println(partit.getNom_l() + " vs " + partit.getNom_v() + " Dia : " + partit.getData())
             );
             System.out.println();
         }
-        return jornades;
+        jornadaRepository.save(jornades);
+        return true;
     }
 
     private void rotar() {
@@ -89,7 +109,7 @@ public class GeneradorJornades {
         equips.set(1, actual);
     }
 
-    private void generarJornada(List<Partit> partits, int girar, LocalDate d) {
+    private void generarJornada(List<Partit> partits, int girar, LocalDate d, Jornada jorn) {
         int numPartits = getPartitsPerJornada();
         int last = equips.size() - 1;
         for (int i = 0; i < numPartits; i++) {
@@ -99,8 +119,10 @@ public class GeneradorJornades {
             } else {
                 tmp = new Partit(equips.get(i), equips.get(last));
             }
-            tmp.setId(rnd.nextLong());
             tmp.setData(d);
+            tmp.setJornada(jorn);
+            //save to get id, sino, no es pot afegir al set
+//            tmp.setId(rnd.nextLong());
             partits.add(tmp);
 
             last--;
@@ -114,4 +136,12 @@ public class GeneradorJornades {
         return -1;
     }
 
+
+    public void setPartitRepository(PartitRepository partitRepository) {
+        this.partitRepository = partitRepository;
+    }
+
+    public void setJornadaRepository(JornadaRepository jornadaRepository) {
+        this.jornadaRepository = jornadaRepository;
+    }
 }

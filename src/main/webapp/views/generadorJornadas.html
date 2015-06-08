@@ -1,0 +1,46 @@
+<div>
+
+    <h2>Generador de Jornades</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <label for="tempo" class="control-label">Temporada</label>
+                <select id="tempo" class="form-control"
+                        ng-options="tempo as tempo.any for tempo in temporadas" ng-model="temporada" required>
+                </select>
+                <br>
+                <label for="grup" class=" control-label">Grup</label>
+                <select id="grup" class="form-control"
+                        ng-options="g as g.nom for g in grups" ng-model="grup" required>
+                </select>
+                <br>
+                <!--<label for="data_inici" class=" control-label">Grup</label>-->
+                <!--<input class="form-control" type="date" id="data_inici" ng-model="data_inici" required/>-->
+
+
+                <div class="form-group">
+                    <label  class=" control-label">Data Inici</label>
+                    <input type="date" class="form-control" name="data_inici" ng-model="data_inici" required>
+                </div>
+
+
+                <br>
+                <div class="panel panel-success">
+                    <ul class="list-group">
+                        <li class="list-group-item active text-center">
+                            <span>Equips:</span>
+                        </li>
+                        <li ng-repeat="e in equips" class="list-group-item animate-repeat">
+                            {{e.nom}}
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" ng-click="generateLeague()">Generar!</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -33,6 +33,12 @@ public class UserDTO {
 
     private List<String> roles;
 
+    private Long equip;
+
+
+
+    private String img;
+
     public UserDTO() {
     }
 
@@ -45,6 +51,7 @@ public class UserDTO {
         this.email = email;
         this.langKey = langKey;
         this.roles = roles;
+        equip = null;
     }
 
     public String getPassword() {
@@ -75,6 +82,21 @@ public class UserDTO {
         return roles;
     }
 
+    public Long getEquip() {
+        return equip;
+    }
+
+    public void setEquip(Long equip) {
+        this.equip = equip;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
     @Override
     public String toString() {
         return "UserDTO{" +

@@ -1,15 +1,16 @@
 
-<div>
-    <h2><span translate="leaguegenApp.temporada.detail.title">Temporada</span> {{temporada.id}}</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
+<div class="row">
+    <div class="col-md-6">
+        <h2><span translate="leaguegenApp.temporada.detail.title">Temporada</span> {{temporada.id}}</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th translate="entity.detail.field">Field</th>
                     <th translate="entity.detail.value">Value</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <td>
                         <span translate="leaguegenApp.temporada.any">Any</span>
@@ -26,13 +27,29 @@
                         <input type="text" class="input-sm form-control" value="{{temporada.descripcio}}" readonly>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <button type="submit"
+                    ui-sref="temporada"
+                    class="btn btn-info">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+            </button>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <h2><span >Grups</span></h2>
+        <ul class="list-group">
+            <li ng-repeat="g in grups" class="list-group-item animate-repeat">
+                {{g.nom}}
+            </li>
+            <li class="animate-repeat list-group-item" ng-if="grups.length == 0">
+                <strong>No s'ha trobat cap grup...</strong>
+            </li>
+
+        </ul>
     </div>
 
-    <button type="submit"
-            ui-sref="temporada"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
-    </button>
+
+
 </div>

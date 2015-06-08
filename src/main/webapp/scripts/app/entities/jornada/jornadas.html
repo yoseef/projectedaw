@@ -4,12 +4,15 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#saveJornadaModal" ng-click="clear()">
                     <span class="glyphicon glyphicon-flash"></span> <span translate="leaguegenApp.jornada.home.createLabel">Create a new Jornada</span>
                 </button>
+                <button class="btn btn-primary" ui-sref="generadorJorn">
+                    <span class="glyphicon glyphicon-flash"></span> <span >Generar Jornades</span>
+                </button>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <form name="searchForm" class="form-inline">
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">

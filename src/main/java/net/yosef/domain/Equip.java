@@ -26,6 +26,11 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "equip")
 public class Equip implements Serializable {
+    @NotNull
+    @Size(min = 3)
+    @Column(name = "nom", nullable = false)
+    private String nom;
+
     public Equip(String n, LocalDate d, Grup g) {
         nom = n;
         data_alta = d;
@@ -47,10 +52,10 @@ public class Equip implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Size(min = 3)
-    @Column(name = "nom", nullable = false)
-    private String nom;
+//    @NotNull
+//    @Size(min = 3)
+//    @Column(name = "nom", nullable = false)
+//    private String nom;
 
     @Column(name = "gols_favor")
     private Integer gols_favor;
@@ -92,12 +97,13 @@ public class Equip implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
 
-    @OneToMany(mappedBy = "equip", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "equip")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();
 
-    @OneToOne
+    @OneToOne(mappedBy="equip")
+    @JsonIgnore
     private User user;
 
     @ManyToOne
@@ -124,7 +130,7 @@ public class Equip implements Serializable {
         _Setgols_f_c(gols_f, gols_f);
         pj++;
         pe++;
-        pts = +1;
+        pts++;
     }
 
     public void haPerdut(int gols_f, int gols_c) {

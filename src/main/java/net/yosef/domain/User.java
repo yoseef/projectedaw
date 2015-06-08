@@ -76,7 +76,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private DateTime resetDate = null;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "JHI_USER_AUTHORITY",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
@@ -85,7 +85,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Set<Authority> authorities = new HashSet<>();
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "equip_id")
     private Equip equip;
 
     String img;

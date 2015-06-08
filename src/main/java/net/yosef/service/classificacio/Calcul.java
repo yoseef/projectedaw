@@ -1,12 +1,16 @@
 package net.yosef.service.classificacio;
 
+import net.yosef.domain.Classificacio;
 import net.yosef.domain.Equip;
 import net.yosef.domain.Grup;
 import net.yosef.domain.Partit;
+import net.yosef.repository.ClassificacioRepository;
 import net.yosef.repository.EquipRepository;
 import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by user on 23/05/15.
@@ -14,37 +18,29 @@ import javax.inject.Inject;
 public class Calcul {
     Equip visit;
     Equip local;
-    static Partit p;
+    Partit p;
 
     @Inject
     EquipRepository equipRepository;
 
-//    public static void main(String [] args){
-//        LocalDate d = new LocalDate();
-//        Grup g = new Grup("Dilluns");
-//        Equip verd = new Equip("verd", d, g);
-//        verd.setId(new Long(1));
-//        Equip groc = new Equip("groc", d, g);
-//        groc.setId(new Long(2));
-//        Calcul c = new Calcul();
-//        p = new Partit(verd,groc);
-//        p.setGols_l(5);
-//        p.setGols_v(10);
-//        c.decidirGuanyador(p);
-//        c.guardarElsCanvis();
-//    }
+    @Inject
+    ClassificacioRepository classificacioRepository;
 
     public void decidirGuanyador(Partit p) {
+        this.p = p;
         if (!p.getEquips().isEmpty()){
             visit = p.getEquips().get("visitant");
             local = p.getEquips().get("local");
-            p.getGols_v();
-            p.getGols_l();
+//            p.getGols_v();
+//            p.getGols_l();
             sumarPunts();
+            guardarElsCanvis();
+        }else{
+            throw new NullPointerException("Els equips no poden ser nulls");
         }
     }
 
-    public void sumarPunts() {
+    private void sumarPunts() {
         if (p.getGols_l() != null && p.getGols_v() != null) {
             if (p.getGols_l() > -1 && p.getGols_v() > -1) {
                 if (p.getGols_l() == p.getGols_v()) {
@@ -62,11 +58,34 @@ public class Calcul {
             }
         }
     }
-    public void guardarElsCanvis(){
+    private void guardarElsCanvis(){
+        Grup g = local.getGrup();
+        Classificacio c = classificacioRepository.findByGrupAndTemporada(g,g.getTemporada());
+        local.setClassificacio(c);
         //save local
         equipRepository.save(local);
+        visit.setClassificacio(c);
         //save visitant
         equipRepository.save(visit);
+
+        replace(c.getEquips(),local);
+        replace(c.getEquips(),visit);
+        classificacioRepository.save(c);
+
     }
 
+    private void replace(Set<Equip> c , Equip e){
+        if (c.contains(e)){
+            c.remove(e);
+            c.add(e);
+        }else{
+            c.add(e);
+        }
+    }
+    public void setEquipRepository(EquipRepository equipRepository) {
+        this.equipRepository = equipRepository;
+    }
+    public void setClassificacioRepository(ClassificacioRepository classificacioRepository) {
+        this.classificacioRepository = classificacioRepository;
+    }
 }

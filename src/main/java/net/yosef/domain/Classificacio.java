@@ -21,13 +21,21 @@ import java.util.Objects;
 @Document(indexName="classificacio")
 public class Classificacio implements Serializable {
 
+    public Classificacio() {
+    }
+
+    public Classificacio(Grup grup, Temporada temporada) {
+        this.grup = grup;
+        this.temporada = temporada;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "punts", nullable = false)
-    private Integer punts;
+//    @NotNull
+//    @Column(name = "punts", nullable = false)
+//    private Integer punts;
 
     @ManyToOne
     private Temporada temporada;
@@ -35,7 +43,7 @@ public class Classificacio implements Serializable {
     @ManyToOne
     private Grup grup;
 
-    @OneToMany(mappedBy = "classificacio")
+    @OneToMany(mappedBy = "classificacio",fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Equip> equips = new HashSet<>();
@@ -48,13 +56,13 @@ public class Classificacio implements Serializable {
         this.id = id;
     }
 
-    public Integer getPunts() {
-        return punts;
-    }
-
-    public void setPunts(Integer punts) {
-        this.punts = punts;
-    }
+//    public Integer getPunts() {
+//        return punts;
+//    }
+//
+//    public void setPunts(Integer punts) {
+//        this.punts = punts;
+//    }
 
     public Temporada getTemporada() {
         return temporada;
@@ -105,7 +113,6 @@ public class Classificacio implements Serializable {
     public String toString() {
         return "Classificacio{" +
                 "id=" + id +
-                ", punts='" + punts + "'" +
                 '}';
     }
 }

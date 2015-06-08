@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll'])
+    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll', 'angular-flexslider'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
         $rootScope.ENV = ENV;
@@ -9,7 +9,6 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             var closebtn = document.getElementById('close-button');
             if (document.body.getAttribute('class') == "ng-scope show-menu") {
-                console.log('menu obert, tancant...');
                 closebtn.click();
             }
             $rootScope.toState = toState;
@@ -107,18 +106,32 @@ angular.module('leaguegenApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                 views: {
                     'content@': {
                         //templateUrl: 'views/admin-dash.html',
-                        controller: function(Principal, $state){
-                            if(Principal.isInRole("ROLE_ADMIN")){
+                        controller: function (Principal, $state) {
+                            if (Principal.isInRole("ROLE_ADMIN")) {
                                 $state.go('admindash');
-                            } else if(Principal.isInRole("ROLE_CAPITA")){
+                            } else if (Principal.isInRole("ROLE_CAPITA")) {
                                 $state.go('capitadash');
-                            } else if(Principal.isInRole("ROLE_USER")){
+                            } else if (Principal.isInRole("ROLE_USER")) {
                                 $state.go('userdash');
                             } else {
                                 console.log('No s\'ha pogut identificar!')
                                 $state.go('home');
                             }
                         }
+                    }
+                }
+            })
+            .state('underconstruct', {
+                'abstract': false,
+                parent: 'entity',
+                url: '/underconstruct',
+                data: {
+                    roles: [],
+                    pageTitle: 'underconstruction'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'views/underconstruct.html'
                     }
                 }
             });

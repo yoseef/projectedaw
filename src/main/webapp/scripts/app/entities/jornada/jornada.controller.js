@@ -70,4 +70,8 @@ angular.module('leaguegenApp')
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
+
+
+
+
     });

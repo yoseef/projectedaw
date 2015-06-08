@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+   <changeSet author="user (generated)" id="1433269396722-1">
+      <addColumn tableName="JHI_USER">
+         <column name="equip_id" type="bigint"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="user (generated)" id="1433269396722-2">
+      <addForeignKeyConstraint baseColumnNames="equip_id"
+                               baseTableName="JHI_USER"
+                               constraintName="FK_3jcdt93fw89ylr2sgxju97v9w"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="EQUIP"/>
+   </changeSet>
+   <changeSet author="user (generated)" id="1433269396722-3">
+      <dropForeignKeyConstraint baseTableName="EQUIP" constraintName="FK_6ir4y4ip5iog0m0i8qfhmlurb"/>
+   </changeSet>
+   <changeSet author="user (generated)" id="1433269396722-4">
+      <dropColumn columnName="user_id" tableName="EQUIP"/>
+   </changeSet>
+   <changeSet author="user (generated)" id="1433269396722-5">
+      <dropPrimaryKey tableName="PARTIT_EQUIP"/>
+      <addPrimaryKey columnNames="partits_id, equips_KEY" tableName="PARTIT_EQUIP"/>
+   </changeSet>
+</databaseChangeLog>

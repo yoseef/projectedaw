@@ -21,18 +21,22 @@
         <!--<link rel="stylesheet" type="text/css" href="assets/bubble/css/demo.css" />-->
         <link rel="stylesheet" type="text/css" href="assets/bubble/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="assets/bubble/css/menu_bubble.css" />
+        <script src="assets/bubble/js/snap.svg-min.js"></script>
+
         <!-- Tabs -->
         <link rel="stylesheet" type="text/css" href="assets/widthTabs/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="assets/widthTabs/css/component.css" />
 
-        <script src="assets/bubble/js/snap.svg-min.js"></script>
+
         <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+        <!-- Flex slider -->
+        <link rel="stylesheet" type="text/css" href="bower_components/flexslider/flexslider.css">
     </head>
     <body ng-app="leaguegenApp">
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
+        <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
         <div ui-view="navbar" ng-cloak=""></div>
         <!--<div ui-view="sidemenu" ng-cloak="">-->
             <!-- -->
@@ -50,8 +54,8 @@
             <div class="well" ng-cloak="" ui-view="content">
             </div>
 
-            <div class="footer">
-                <p translate="footer">This is your footer</p>
+            <div class="footer text-center">
+                <p>LEAGUEGEN 2015</p>
             </div>
         </div>
 
@@ -85,6 +89,13 @@
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+
+        <!-- flex slide-->
+        <!--<script src="bower_components/jquery/jquery.js"></script>-->
+        <script src="bower_components/flexslider/jquery.flexslider.js"></script>
+        <!--<script src="bower_components/angular/angular.js"></script>-->
+        <script src="bower_components/angular-flexslider/angular-flexslider.js"></script>
+        <!-- flex slidder-->
 
 
         <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
@@ -156,16 +167,28 @@
         <script src="scripts/app/entities/grup/grup.controller.js"></script>
         <script src="scripts/app/entities/grup/grup-detail.controller.js"></script>
         <script src="scripts/components/entities/grup/grup.service.js"></script>
+
+        <script src="scripts/components/entities/grup/grupPers.service.js"></script>
+
         <script src="scripts/components/entities/grup/grup.search.service.js"></script>
         <script src="scripts/app/entities/jornada/jornada.js"></script>
         <script src="scripts/app/entities/jornada/jornada.controller.js"></script>
         <script src="scripts/app/entities/jornada/jornada-detail.controller.js"></script>
+
+        <script src="scripts/app/entities/jornada/jornada-generador.controller.js"></script>
+
         <script src="scripts/components/entities/jornada/jornada.service.js"></script>
+
+        <script src="scripts/components/entities/jornada/JornPers.service.js"></script>
+
         <script src="scripts/components/entities/jornada/jornada.search.service.js"></script>
         <script src="scripts/app/entities/equip/equip.js"></script>
         <script src="scripts/app/entities/equip/equip.controller.js"></script>
         <script src="scripts/app/entities/equip/equip-detail.controller.js"></script>
         <script src="scripts/components/entities/equip/equip.service.js"></script>
+
+        <script src="scripts/components/entities/equip/equipPers.service.js"></script>
+
         <script src="scripts/components/entities/equip/equip.search.service.js"></script>
         <script src="scripts/app/entities/jugador/jugador.js"></script>
         <script src="scripts/app/entities/jugador/jugador.controller.js"></script>

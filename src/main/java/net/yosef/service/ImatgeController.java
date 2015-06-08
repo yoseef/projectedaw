@@ -1,11 +1,17 @@
 package net.yosef.service;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
+import jdk.nashorn.internal.ir.debug.JSONWriter;
+import jdk.nashorn.internal.parser.JSONParser;
 import net.yosef.domain.User;
 import net.yosef.repository.UserRepository;
 import net.yosef.security.SecurityUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by user on 27/05/15.
@@ -21,9 +28,10 @@ import javax.inject.Inject;
 public class ImatgeController {
     @Inject
     private UserRepository userepo;
-    public static final String CARPETA_IMATGES = "imatges";
-    private User user = null;
 
+    public static final String CARPETA_IMATGES = "src/main/webapp/imgs";
+    public static final String DESTI_PUBLIC = "imgs";
+    private User user = null;
 
     /**
      * @return la imatge que te l'usuari logejat!
@@ -31,24 +39,8 @@ public class ImatgeController {
     @RequestMapping(value = "/imatge", method = RequestMethod.GET)
     public
     @ResponseBody
-    ResponseEntity<byte[]> provideImage() {
-        InputStream in = null;
-        MediaType mediatype;
-        File imatge = obtenirImatgeDeUser();
-        if (imatge != null) {
-            try {
-                in = new FileInputStream(
-                    imatge
-                );
-                mediatype = obtenirFormatImatge(imatge.getName());
-                return ResponseEntity.ok().contentType(mediatype).body(IOUtils.toByteArray(in));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+    ResponseEntity<String> provideImage()  {
+        return new ResponseEntity<>("Aqui es pot pujar imatges",HttpStatus.OK);
     }
 
 
@@ -68,17 +60,20 @@ public class ImatgeController {
                     crearCarpetaImatge();
                     if (filtreImatge(file.getContentType())) {
                         File desti = assignarRutaDesti(user.getLogin(), file.getContentType().split("/")[1]);
+
                         if (desti != null) {
                             byte[] bytes = file.getBytes();
                             //eliminar la anterior
-                            comprovarImatgeUser(new File(user.getImg()));
-                            user.setImg(desti.getAbsolutePath());
+                            if (user.getImg() != null){
+                                comprovarImatgeUser(new File(user.getImg()));
+                            }
+                            user.setImg(DESTI_PUBLIC + File.separator + desti.getName());
                             userepo.save(user);
                             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(desti));
                             stream.write(bytes);
                             stream.close();
                             return "{\"msg\":\"S'ha pujat correctament " + file.getOriginalFilename() + "!\"}";
-                        }else {
+                        } else {
                             return "{\"msg\":\"No s'ha pogut guardar la ruta de la imatge!\"}";
                         }
                     } else {
@@ -94,11 +89,6 @@ public class ImatgeController {
         } else {
             return "{\"msg\":\"Ha fallat la pujada del fitxer, l'usuari no s'ha identificat!.\"";
         }
-
-
-//        } else {
-//            return "{\"msg\":\"Ha fallat la pujada del fitxer : " + file.getOriginalFilename() + " usuari no authentificat.\"";
-//        }
     }
 
     // Funcions auxiliars
@@ -160,11 +150,15 @@ public class ImatgeController {
         }
         return f;
     }
-    private void comprovarImatgeUser(File img){
+
+    private void comprovarImatgeUser(File img) {
         //comprovem si ja tenia una imatge.
-        if(img.exists()){
+
+        //comprovar si existei amb un altre ext i eliminarlo
+        if (img.exists()) {
             // l'esborrem
             img.delete();
+
         }
     }
 }

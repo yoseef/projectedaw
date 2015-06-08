@@ -4,8 +4,8 @@ angular.module('leaguegenApp')
     .controller('GrupController', function ($scope, Grup, Temporada, Equip, Jornada, GrupSearch) {
         $scope.grups = [];
         $scope.temporadas = Temporada.query();
-        $scope.equips = Equip.query();
-        $scope.jornadas = Jornada.query();
+        //$scope.equips = Equip.query();
+        //$scope.jornadas = Jornada.query();
         $scope.loadAll = function() {
             Grup.query(function(result) {
                $scope.grups = result;

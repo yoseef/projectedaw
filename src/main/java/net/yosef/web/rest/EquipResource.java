@@ -3,9 +3,11 @@ package net.yosef.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.yosef.domain.Authority;
 import net.yosef.domain.Equip;
+import net.yosef.domain.Grup;
 import net.yosef.domain.User;
 import net.yosef.repository.AuthorityRepository;
 import net.yosef.repository.EquipRepository;
+import net.yosef.repository.GrupRepository;
 import net.yosef.repository.UserRepository;
 import net.yosef.repository.search.EquipSearchRepository;
 import net.yosef.security.AuthoritiesConstants;
@@ -50,6 +52,9 @@ public class EquipResource {
     @Inject
     private AuthorityRepository authorityRepo;
 
+    @Inject
+    private GrupRepository grupRepository;
+
     private User user;
 
     /**
@@ -66,17 +71,22 @@ public class EquipResource {
             return ResponseEntity.badRequest().header("Failure", "A new equip cannot already have an ID").build();
         }
         //Sempres que es crea un nou equip tindra la puntuacio a zero : gf,gc,pj,pg,pe,pp,pts = 0
+        Equip e = new Equip(equip.getNom(),equip.getData_alta(),equip.getGrup());
 
-        equipRepository.save(equip);
-        equipSearchRepository.save(equip);
+        equipRepository.save(e);
+        equipSearchRepository.save(e);
         //if auth > equip + role_capita
         user = getCurrentUser();
         if (user != null) {
-            user.setEquip(equip);
+            user.setEquip(e);
             Authority a = authorityRepo.findOne("ROLE_CAPITA");
             if (a != null)
                 user.getAuthorities().add(a);
             userepo.save(user);
+
+            e.setUser(user);
+            equipRepository.save(e);
+            equipSearchRepository.save(e);
         }
         return ResponseEntity.created(new URI("/api/equips/" + equip.getId())).build();
     }
@@ -128,6 +138,23 @@ public class EquipResource {
     }
 
     /**
+     * GET  /equipsByGrup/:id -> get the equip by grup.
+     */
+    @RequestMapping(value = "/equipsByGrup/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Equip>> equipsByGrup(@PathVariable Long id) {
+        log.debug("REST request to get Equip by group: {}", id);
+        Grup g = grupRepository.findOne(id);
+        return Optional.ofNullable(equipRepository.findByGrup(g))
+            .map(equip -> new ResponseEntity<>(
+                equip,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
      * DELETE  /equips/:id -> delete the "id" equip.
      */
     @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.CAPITA})
@@ -137,9 +164,8 @@ public class EquipResource {
     @Timed
     public void delete(@PathVariable Long id) {
         log.debug("REST request to delete Equip : {}", id);
-        equipRepository.delete(id);
-        equipSearchRepository.delete(id);
         user = getCurrentUser();
+        //if user admin obtenir user apaerir de id equip
         if (user != null) {
             Authority a = authorityRepo.findOne("ROLE_CAPITA");
             if (user.getAuthorities().contains(a)){
@@ -148,6 +174,10 @@ public class EquipResource {
             user.setEquip(null);
             userepo.save(user);
         }
+        equipRepository.delete(id);
+        equipSearchRepository.delete(id);
+
+
     }
 
     /**

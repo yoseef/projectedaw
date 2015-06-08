@@ -13,13 +13,23 @@ sidemenu {
     overflow: hidden;
 }
 #map {
-    height:420px;
-    width:600px;
+    height:490px;
+    width:100%;
 }
 .infoWindowContent {
     font-size:  14px !important;
     border-top: 1px solid #ccc;
     padding-top: 10px;
+}
+
+body > div.container.content-wrap > div.footer.text-center{
+    border-top: 2px solid rgb(201, 201, 201);
+}
+
+body > div.container.content-wrap > div.footer.text-center > p {
+    margin-top: 12px;
+    font-weight: bold;
+    color: rgb(33, 150, 243);
 }
 
 /* ========================================================================== */

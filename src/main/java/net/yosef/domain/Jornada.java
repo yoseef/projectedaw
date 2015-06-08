@@ -38,7 +38,7 @@ public class Jornada implements Serializable {
     @ManyToOne
     private Grup grup;
 
-    @OneToMany(mappedBy = "jornada")
+    @OneToMany(mappedBy = "jornada",cascade = CascadeType.PERSIST)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Partit> partits = new HashSet<>();
@@ -73,6 +73,9 @@ public class Jornada implements Serializable {
 
     public void setPartits(Set<Partit> partits) {
         this.partits = partits;
+    }
+    public void setPartits(List<Partit> partits) {
+        this.partits.addAll(partits);
     }
 
     @Override

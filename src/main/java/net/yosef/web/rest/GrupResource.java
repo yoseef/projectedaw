@@ -1,8 +1,12 @@
 package net.yosef.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import net.yosef.domain.Classificacio;
 import net.yosef.domain.Grup;
+import net.yosef.domain.Temporada;
+import net.yosef.repository.ClassificacioRepository;
 import net.yosef.repository.GrupRepository;
+import net.yosef.repository.TemporadaRepository;
 import net.yosef.repository.search.GrupSearchRepository;
 import net.yosef.security.AuthoritiesConstants;
 import org.slf4j.Logger;
@@ -39,6 +43,11 @@ public class GrupResource {
     @Inject
     private GrupSearchRepository grupSearchRepository;
 
+    @Inject
+    private TemporadaRepository temporadaRepository;
+
+    @Inject
+    private ClassificacioRepository classificacioRepository;
     /**
      * POST  /grups -> Create a new grup.
      */
@@ -47,7 +56,6 @@ public class GrupResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-
     @Timed
     public ResponseEntity<Void> create(@Valid @RequestBody Grup grup) throws URISyntaxException {
         log.debug("REST request to save Grup : {}", grup);
@@ -56,6 +64,10 @@ public class GrupResource {
         }
         grupRepository.save(grup);
         grupSearchRepository.save(grup);
+
+        //Creem la classificacio de aquest grup:
+        Classificacio c = new Classificacio(grup,grup.getTemporada());
+        classificacioRepository.save(c);
         return ResponseEntity.created(new URI("/api/grups/" + grup.getId())).build();
     }
 
@@ -89,17 +101,24 @@ public class GrupResource {
         return grupRepository.findAll();
     }
 
+
     /**
-     * GET  /grups -> get all the grups.
+     * GET  /grupsByTemp/:id -> get the grups by temporada.
      */
-    @RequestMapping(value = "/grupsByTemp",
+    @RequestMapping(value = "/grupsByTemp/{id}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Grup> getAllByTemp() {
-        log.debug("REST request to get all Grups by Temp");
-        return grupRepository.findAll();
+    public ResponseEntity<List<Grup>> getByTemp(@PathVariable Long id) {
+        log.debug("REST request to get Grup : {}", id);
+        Temporada t = temporadaRepository.findOne(id);
+        return Optional.ofNullable(grupRepository.findByTemporada(t))
+            .map(grup -> new ResponseEntity<>(
+                grup,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
 
     /**
      * GET  /grups/:id -> get the "id" grup.

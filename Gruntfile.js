@@ -448,8 +448,8 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep:test',
         'ngconstant:dev',
-        'concurrent:test',
-        'karma'
+        'concurrent:test'
+        //'karma'
     ]);
 
     grunt.registerTask('build', [
@@ -518,7 +518,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'test',
+        //'test',
         'build'
     ]);
 };

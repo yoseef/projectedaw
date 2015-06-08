@@ -1,9 +1,32 @@
 <div class="row">
-    <h3>Informacio sobre el projecte!</h3>
-
-    <div id="map"></div>
-
-    <a href="#" ng-click="openInfoWindow($event, markers[0])">Carrer Pelai martinez</a>
+    <div class="panel panel-primary panel-heading text-center">
+        <h3>Informacio sobre el projecte!</h3>
+    </div>
+    <div class="col-md-6 panel panel-primary panel-body">
+        <flex-slider slide="s in mySlides">
+            <li>
+                <img ng-src="{{s}}">
+            </li>
+        </flex-slider>
+        <div class="well">
+           <p>Es tracta de una plataforma  per gestionar les dades de una lliga de futbol. el programa ens permet entrar
+               equips i els resultats de enfrontament per poder portar a terme el seguiment de la lliga, com a usuaris
+               podrem consultar la classificacio total o de cada equip , participar en un equip o crear-ne un de nou!</p>
+        </div>
+    </div>
+    <div class="col-md-6 panel panel-primary panel-body">
+        <blockquote class="pull-left">
+            <h4>Contacte</h4>
+            <span> Empresa : <strong>leagueGen</strong></span>
+            <br>
+            <span> Telefon : <strong>123456789</strong></span>
+            <br>
+            <span> Email   : <strong>leagueGen@gmail.com</strong></span>
+            <br>
+            <span> Adreça : <a href="#" ng-click="openInfoWindow($event, markers[0])">Carrer Pelai martinez 34 , Figueres</a></span>
+        </blockquote>
+        <div id="map"></div>
+    </div>
 
 </div>
 

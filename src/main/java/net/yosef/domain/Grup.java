@@ -18,14 +18,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "GRUP")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName="grup")
+@Document(indexName = "grup")
 public class Grup implements Serializable {
-    public Grup(){
+    public Grup() {
 
     }
-    public Grup(String n){
+
+    public Grup(String n) {
         nom = n;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,15 +37,16 @@ public class Grup implements Serializable {
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    @NotNull
     @ManyToOne
     private Temporada temporada;
 
-    @OneToMany(mappedBy = "grup")
+    @OneToMany(mappedBy = "grup", fetch = FetchType.EAGER)
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Equip> equips = new HashSet<>();
 
-    @OneToMany(mappedBy = "grup")
+    @OneToMany(mappedBy = "grup", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jornada> jornadas = new HashSet<>();
@@ -99,7 +102,7 @@ public class Grup implements Serializable {
 
         Grup grup = (Grup) o;
 
-        if ( ! Objects.equals(id, grup.id)) return false;
+        if (!Objects.equals(id, grup.id)) return false;
 
         return true;
     }
@@ -112,8 +115,8 @@ public class Grup implements Serializable {
     @Override
     public String toString() {
         return "Grup{" +
-                "id=" + id +
-                ", nom='" + nom + "'" +
-                '}';
+            "id=" + id +
+            ", nom='" + nom + "'" +
+            '}';
     }
 }

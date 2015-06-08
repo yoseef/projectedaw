@@ -11,10 +11,16 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav nav-pills navbar-right">
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" >
                     <a ui-sref="home">
                         <span class="glyphicon glyphicon-home"></span>
                         <span translate="global.menu.home">Home</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="info">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <span >Info</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">

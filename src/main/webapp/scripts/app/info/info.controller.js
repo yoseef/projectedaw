@@ -2,6 +2,15 @@
 
 angular.module('leaguegenApp')
     .controller('InfoController', function ($scope, Principal) {
+
+        $scope.mySlides = [
+            "assets/slider/1.jpg",
+            "assets/slider/2.jpg",
+            "assets/slider/3.jpg",
+            "assets/slider/4.jpg",
+            "assets/slider/5.jpg"
+        ];
+
         var mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(42.273796, 2.964970),

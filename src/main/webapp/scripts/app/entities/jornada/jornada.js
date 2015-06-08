@@ -42,5 +42,19 @@ angular.module('leaguegenApp')
                         return $translate.refresh();
                     }]
                 }
+            })
+            .state('generadorJorn', {
+                parent: 'entity',
+                url: '/jornada/generar',
+                data: {
+                    roles: ['ROLE_USER']
+                    //pageTitle: 'leaguegenApp.jornada.detail.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'views/generadorJornadas.html',
+                        controller: 'JornadaGeneratorController'
+                    }
+                }
             });
     });

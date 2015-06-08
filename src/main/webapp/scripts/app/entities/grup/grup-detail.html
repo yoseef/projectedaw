@@ -1,15 +1,16 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2><span translate="leaguegenApp.grup.detail.title">Grup</span> {{grup.id}}</h2>
 
-<div>
-    <h2><span translate="leaguegenApp.grup.detail.title">Grup</span> {{grup.id}}</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th translate="entity.detail.field">Field</th>
                     <th translate="entity.detail.value">Value</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <td>
                         <span translate="leaguegenApp.grup.nom">Nom</span>
@@ -26,13 +27,27 @@
                         <input type="text" class="input-sm form-control" value="{{grup.temporada.any}}" readonly>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit"
+                ui-sref="grup"
+                class="btn btn-info">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+        </button>
+    </div>
+    <div class="col-md-6">
+        <h2><span>Equips</span></h2>
+        <ul class="list-group">
+            <li ng-repeat="e in equips" class="list-group-item animate-repeat">
+                {{e.nom}}
+            </li>
+            <li class="animate-repeat list-group-item" ng-if="equips.length == 0">
+                <strong>No s'ha trobat cap equip...</strong>
+            </li>
+
+        </ul>
     </div>
 
-    <button type="submit"
-            ui-sref="grup"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
-    </button>
 </div>

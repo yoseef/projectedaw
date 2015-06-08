@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leaguegenApp')
-    .controller('EquipController', function ($scope, Equip, Grup, Partit, Jugador, User, Classificacio, EquipSearch) {
+    .controller('EquipController', function ($scope, Equip, Grup, Partit, Jugador, User, Classificacio, EquipSearch, $state,$stateParams) {
         $scope.equips = [];
         $scope.grups = Grup.query();
         $scope.partits = Partit.query();
@@ -32,7 +32,13 @@ angular.module('leaguegenApp')
                 Equip.save($scope.equip,
                     function () {
                         $scope.refresh();
-                    });
+                        //$state.transitionTo($state.current, $stateParams, {
+                        //    reload: true,
+                        //    inherit: false,
+                        //    notify: true
+                        //});
+                        //$state.go('capitadash')
+                    })
             }
         };
 
