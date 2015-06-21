@@ -6,7 +6,7 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/leagueGen
+        url: jdbc:mysql://localhost:3306/prova
         databaseName:
         serverName:
         username: root
